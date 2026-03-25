@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEXBRASIL — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07090f;--bg2:#0f1422;--bg3:#141929;--border:rgba(65,105,200,.18);--border2:rgba(65,105,200,.4);--royal:#2a4fab;--royal-lt:#3a62cc;--accent:#c8d8ff;--text:#d4dcf0;--text-dim:#6878a0;--text-faint:#2e3a55;--green:#3a9a5c;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{min-height:100vh;background:var(--bg);font-family:'Lato',sans-serif;color:var(--text);display:flex;align-items:center;justify-content:center;padding:20px;}
+#box{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:36px 40px;max-width:580px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.6);}
+#back{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--text-faint);margin-bottom:22px;text-decoration:none;transition:color .2s;}
+#back:hover{color:var(--text-dim);}
+h1{font-family:'Playfair Display',serif;font-size:22px;color:var(--accent);margin-bottom:4px;}
+.sub{font-size:12px;color:var(--text-faint);margin-bottom:26px;line-height:1.6;}
+label{display:block;font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px;}
+input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 13px;color:var(--text);font-size:13px;font-family:'JetBrains Mono',monospace;outline:none;margin-bottom:18px;transition:border-color .2s;}
+input:focus{border-color:var(--border2);}
+.row{display:flex;gap:12px;}
+.row>div{flex:1;}
+#btn{width:100%;background:var(--royal);border:none;color:#fff;padding:13px;border-radius:8px;cursor:pointer;font-size:15px;font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.5px;transition:background .2s;margin-top:6px;}
+#btn:hover{background:var(--royal-lt);}
+#btn:disabled{opacity:.4;cursor:not-allowed;}
+#res{margin-top:20px;padding:14px 18px;border-radius:8px;font-size:13px;line-height:1.7;display:none;border:1px solid;}
+#res.ok{background:rgba(58,154,92,.08);border-color:rgba(58,154,92,.3);color:#6abf8a;}
+#res.err{background:rgba(170,74,74,.08);border-color:rgba(170,74,74,.3);color:#cf8a8a;}
+#res.loading{background:rgba(42,79,171,.08);border-color:var(--border);color:var(--text-dim);}
+.info{background:rgba(42,79,171,.06);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--text-faint);line-height:1.8;margin-bottom:22px;}
+.info strong{color:var(--text-dim);}
+.sep{border:none;border-top:1px solid var(--border);margin:22px 0;}
+code{display:block;background:rgba(0,0,0,.4);padding:10px 13px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#7aa0e8;margin:8px 0;white-space:pre;}
+a{color:var(--royal-lt);}
+</style>
+</head>
+<body>
+<div id="box">
+  <a href="/" id="back">← Voltar ao sistema</a>
+  <h1>⚙️ Painel do Administrador</h1>
+  <div class="sub">Acesso restrito. Ao buscar novidades, <strong>todos os visitantes</strong> verão as atualizações publicadas.</div>
+
+  <div class="info">
+    <strong>Como funciona:</strong> informe sua senha e API key, clique em buscar. A IA pesquisa na web as últimas novidades do STF, STJ, TST e Planalto e salva no banco de dados. Visitantes veem automaticamente em <strong>🔔 Novidades</strong>.
+  </div>
+
+  <div class="row">
+    <div>
+      <label>Senha Admin</label>
+      <input type="password" id="senha" placeholder="sua senha secreta">
+    </div>
+    <div>
+      <label>API Key Anthropic</label>
+      <input type="password" id="apikey" placeholder="sk-ant-api03-...">
+    </div>
+  </div>
+
+  <button id="btn" onclick="atualizar()">🔍 Buscar Novidades e Publicar</button>
+  <div id="res"></div>
+
+  <div class="sep"></div>
+
+  <div style="font-size:11px;color:var(--text-faint);line-height:1.9;">
+    <strong style="color:var(--text-dim);">SQL para criar tabelas no Supabase (rodar uma vez):</strong>
+    <code>CREATE TABLE novidades (
+  id SERIAL PRIMARY KEY,
+  tipo TEXT, fonte TEXT, titulo TEXT,
+  descricao TEXT, impacto TEXT,
+  data_aproximada TEXT,
+  criado_em TIMESTAMPTZ DEFAULT NOW()
+);
+CREATE TABLE meta (
+  chave TEXT PRIMARY KEY,
+  valor TEXT
+);</code>
+    <strong style="color:var(--text-dim);">Variáveis no Vercel:</strong><br>
+    SUPABASE_URL · SUPABASE_ANON_KEY · SUPABASE_SERVICE_KEY · ADMIN_SENHA<br><br>
+    API key Anthropic: <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>
+  </div>
+</div>
+
+<script>
+const ss=sessionStorage;
+const si=id=>document.getElementById(id);
+if(ss.getItem("adm_s"))si("senha").value=ss.getItem("adm_s");
+if(ss.getItem("adm_k"))si("apikey").value=ss.getItem("adm_k");
+
+async function atualizar(){
+  const senha=si("senha").value.trim();
+  const key=si("apikey").value.trim();
+  if(!senha){alert("Informe a senha admin.");return;}
+  if(!key||!key.startsWith("sk-")){alert("API key inválida.");return;}
+  ss.setItem("adm_s",senha); ss.setItem("adm_k",key);
+  const btn=si("btn"), res=si("res");
+  btn.disabled=true; btn.textContent="⏳ Buscando…";
+  res.style.display="block"; res.className="loading";
+  res.innerHTML="🔍 A IA está pesquisando novidades no STF, STJ, TST e Planalto…<br><small>Aguarde 20-40 segundos.</small>";
+  try{
+    const r=await fetch("/api/admin-atualizar",{method:"POST",
+      headers:{"Content-Type":"application/json","x-admin-senha":senha,"x-api-key":key}});
+    const d=await r.json();
+    if(!r.ok||d.error)throw new Error(d.error||"Erro");
+    res.className="ok";
+    res.innerHTML=`✅ <strong>${d.total} novidades</strong> publicadas com sucesso!<br>Todos os visitantes já podem ver. Atualizado: ${d.atualizado_em}`;
+  }catch(e){
+    res.className="err";
+    res.innerHTML=`❌ ${e.message}<br><small>Verifique senha, API key e configuração do Supabase.</small>`;
+  }
+  btn.disabled=false; btn.textContent="🔍 Buscar Novidades e Publicar";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "lexbrasil",
+  "version": "1.0.0",
+  "description": "Sistema Jurídico Integrado Brasileiro",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}
