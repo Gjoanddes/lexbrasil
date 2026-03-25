@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEXBRASIL — Sistema Juridico Integrado</title>
+<title>LEXBRASIL — Sistema Jurídico Integrado</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -11,7 +11,7 @@
   --border:rgba(65,105,200,.18);--border2:rgba(65,105,200,.4);
   --royal:#2a4fab;--royal-lt:#3a62cc;--royal-dim:rgba(42,79,171,.14);
   --accent:#c8d8ff;--text:#d4dcf0;--text-dim:#6878a0;--text-faint:#2e3a55;
-  --green:#3a9a5c;
+  --green:#3a9a5c;--gold:#c8a020;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 ::-webkit-scrollbar{width:4px;}
@@ -19,48 +19,46 @@
 ::-webkit-scrollbar-thumb{background:var(--royal);border-radius:4px;}
 body{min-height:100vh;background:var(--bg);font-family:'Lato',sans-serif;color:var(--text);display:flex;flex-direction:column;}
 a{color:var(--royal-lt);text-decoration:none;}
-
-/* AVISO INICIAL */
-#aviso-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;}
-#aviso-box{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:36px 40px;max-width:500px;width:100%;text-align:center;box-shadow:0 8px 60px rgba(0,0,0,.7);}
-#aviso-icon{font-size:42px;margin-bottom:16px;}
-#aviso-box h2{font-family:'Playfair Display',serif;font-size:20px;color:var(--accent);margin-bottom:14px;line-height:1.3;}
-#aviso-box p{font-size:13px;color:var(--text-dim);line-height:1.8;margin-bottom:24px;}
-#aviso-btn{background:var(--royal);border:none;color:#fff;padding:12px 36px;border-radius:8px;cursor:pointer;font-size:14px;font-family:'Playfair Display',serif;font-weight:700;letter-spacing:.5px;transition:background .2s;}
+/* AVISO */
+#aviso-overlay{position:fixed;inset:0;background:rgba(0,0,0,.86);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;}
+#aviso-box{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:32px 36px;max-width:480px;width:100%;text-align:center;}
+#aviso-box h2{font-family:'Playfair Display',serif;font-size:19px;color:var(--accent);margin:14px 0 12px;line-height:1.3;}
+#aviso-box p{font-size:13px;color:var(--text-dim);line-height:1.8;margin-bottom:22px;}
+#aviso-btn{background:var(--royal);border:none;color:#fff;padding:11px 32px;border-radius:8px;cursor:pointer;font-size:14px;font-family:'Playfair Display',serif;font-weight:700;transition:background .2s;}
 #aviso-btn:hover{background:var(--royal-lt);}
-
 /* HEADER */
-#hdr{height:56px;padding:0 22px;background:rgba(7,9,15,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);}
-#logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-#logo-icon{width:34px;height:34px;border-radius:7px;background:linear-gradient(135deg,#1e3a9a,#3a62cc);display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 0 16px rgba(42,79,171,.4);}
-#logo-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--accent);letter-spacing:2px;}
-#logo-sub{font-size:8.5px;color:var(--text-faint);letter-spacing:2px;text-transform:uppercase;}
-#srch{flex:1;max-width:500px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;padding:0 12px;gap:8px;transition:border-color .2s;}
+#hdr{min-height:56px;padding:0 18px;background:rgba(7,9,15,.97);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);flex-wrap:wrap;}
+#logo{display:flex;align-items:center;gap:9px;flex-shrink:0;cursor:pointer;}
+.logo-icone{width:34px;height:34px;border-radius:8px;background:linear-gradient(145deg,#1a3896,#3a62cc);display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(42,79,171,.45);flex-shrink:0;}
+#logo-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--accent);letter-spacing:2px;}
+#logo-sub{font-size:8px;color:var(--text-faint);letter-spacing:2px;text-transform:uppercase;}
+#btn-home{background:transparent;border:1px solid var(--border);color:var(--text-faint);padding:6px 12px;border-radius:7px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;transition:all .2s;white-space:nowrap;}
+#btn-home:hover{border-color:var(--border2);color:var(--accent);}
+#srch{flex:1;min-width:160px;max-width:460px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;padding:0 12px;gap:8px;transition:border-color .2s;}
 #srch:focus-within{border-color:var(--border2);}
-#srch input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:'Lato',sans-serif;font-size:13px;padding:9px 0;}
+#srch input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:'Lato',sans-serif;font-size:13px;padding:8px 0;}
 #srch input::placeholder{color:var(--text-faint);}
-#hdr-right{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0;}
-#contador{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:10px;color:var(--text-dim);}
-.green-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2.5s infinite;}
+#hdr-right{display:flex;align-items:center;gap:7px;margin-left:auto;flex-shrink:0;flex-wrap:wrap;}
+#contador{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:5px 10px;font-size:10px;color:var(--text-dim);}
+.green-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2.5s infinite;flex-shrink:0;}
 #cnt-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);font-weight:500;}
-#btn-nov{background:var(--royal);border:none;color:#fff;padding:7px 14px;border-radius:7px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;font-weight:700;letter-spacing:.3px;transition:background .2s;display:flex;align-items:center;gap:5px;}
+#btn-simpl{background:linear-gradient(135deg,rgba(200,160,32,.22),rgba(200,160,32,.08));border:1px solid rgba(200,160,32,.55);color:#d4b040;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;font-weight:700;transition:all .2s;white-space:nowrap;box-shadow:0 0 10px rgba(200,160,32,.1);}
+#btn-simpl:hover{background:linear-gradient(135deg,rgba(200,160,32,.38),rgba(200,160,32,.18));border-color:rgba(200,160,32,.9);}
+#btn-nov{background:var(--royal);border:none;color:#fff;padding:7px 12px;border-radius:7px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;font-weight:700;transition:background .2s;white-space:nowrap;}
 #btn-nov:hover{background:var(--royal-lt);}
-#upd-txt{font-size:9px;color:var(--text-faint);line-height:1.5;text-align:right;display:none;}
-
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(58,154,92,.4);}50%{opacity:.5;box-shadow:0 0 0 4px rgba(58,154,92,0);}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
-@keyframes spin{to{transform:rotate(360deg);}}
-
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 /* FILTROS */
-#filtros{padding:6px 22px;background:rgba(11,14,24,.6);border-bottom:1px solid rgba(65,105,200,.07);display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+#filtros{padding:6px 18px;background:rgba(11,14,24,.6);border-bottom:1px solid rgba(65,105,200,.07);display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
 .flabel{font-size:9px;color:var(--text-faint);letter-spacing:1.5px;text-transform:uppercase;margin-right:4px;}
-.fb{background:transparent;border:1px solid rgba(65,105,200,.18);color:var(--text-dim);padding:3px 12px;border-radius:20px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;transition:all .18s;}
+.fb{background:transparent;border:1px solid rgba(65,105,200,.18);color:var(--text-dim);padding:3px 11px;border-radius:20px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;transition:all .18s;}
 .fb:hover,.fb.on{background:var(--royal-dim);border-color:var(--border2);color:var(--accent);}
+.fb-sobre{background:transparent;border:1px solid rgba(200,160,32,.25);color:rgba(200,160,32,.7);padding:3px 11px;border-radius:20px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;transition:all .18s;}
+.fb-sobre:hover{background:rgba(200,160,32,.1);border-color:rgba(200,160,32,.6);color:var(--gold);}
 #cnt-badge{margin-left:auto;font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;}
-
-/* MAIN */
+/* LAYOUT */
 #main{display:flex;flex:1;overflow:hidden;min-height:0;}
-#lista{width:300px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;padding:10px;background:var(--bg1);}
+#lista{width:285px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto;padding:10px;background:var(--bg1);}
 .ic{border:1px solid var(--border);border-radius:8px;padding:11px 13px;cursor:pointer;transition:all .18s;margin-bottom:5px;background:var(--bg2);}
 .ic:hover{border-color:var(--border2);background:var(--bg3);}
 .ic.sel{border-color:var(--royal);background:var(--royal-dim);}
@@ -74,53 +72,49 @@ a{color:var(--royal-lt);text-decoration:none;}
 .ic-tag{font-size:8px;background:var(--royal-dim);color:var(--text-dim);padding:1px 5px;border-radius:10px;border:1px solid var(--border);}
 #ver-mais-btn{width:100%;background:transparent;border:1px dashed var(--border);color:var(--text-faint);padding:6px;border-radius:7px;cursor:pointer;font-size:11px;margin-top:4px;transition:all .2s;}
 #ver-mais-btn:hover{border-color:var(--border2);color:var(--text-dim);}
-#lista-empty{text-align:center;padding:30px 12px;color:var(--text-faint);}
-
 /* PAINEL */
-#painel{flex:1;overflow-y:auto;padding:22px 26px;background:var(--bg);}
-#welcome{max-width:560px;margin:0 auto;padding:36px 0;}
-.w-icon{font-size:40px;margin-bottom:14px;opacity:.7;}
-.w-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--accent);margin-bottom:8px;}
+#painel{flex:1;overflow-y:auto;padding:22px 24px;background:var(--bg);}
+/* WELCOME */
+#welcome{max-width:660px;margin:0 auto;padding:28px 0;}
+.w-icon{font-size:38px;margin-bottom:10px;opacity:.8;}
+.w-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--accent);margin-bottom:8px;}
 .w-sub{font-size:13px;color:var(--text-dim);line-height:1.8;max-width:440px;}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:24px;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px;}
 .stat{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:14px;text-align:center;}
 .stat-ico{font-size:20px;margin-bottom:4px;}
 .stat-n{font-family:'Playfair Display',serif;font-size:22px;color:var(--royal-lt);}
 .stat-l{font-size:10px;color:var(--text-faint);margin-top:2px;}
-.w-hint{margin-top:20px;font-size:12px;color:var(--text-faint);background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;line-height:1.7;}
+.w-hint{margin-top:16px;font-size:12px;color:var(--text-faint);background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;line-height:1.7;}
 .w-hint strong{color:var(--text-dim);}
-
-/* NOVIDADES */
-.nov-wrap{animation:fadeIn .25s ease;}
-.nov-hdr{margin-bottom:16px;}
-.nov-hdr h2{font-family:'Playfair Display',serif;font-size:20px;color:var(--accent);}
-.nov-hdr .sub{font-size:11px;color:var(--text-faint);margin-top:3px;}
-.nov-card{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:16px;margin-bottom:10px;animation:fadeIn .3s ease;transition:border-color .2s;}
-.nov-card:hover{border-color:var(--border2);}
-.nov-meta{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
-.nov-fonte{font-size:8.5px;color:var(--royal-lt);font-family:'JetBrains Mono',monospace;letter-spacing:.8px;text-transform:uppercase;}
-.nov-data{font-size:9px;color:var(--text-faint);}
-.nov-tipo-badge{font-size:8px;background:var(--royal-dim);color:var(--text-dim);padding:1px 7px;border-radius:10px;border:1px solid var(--border);}
-.nov-titulo{font-family:'Playfair Display',serif;font-size:15px;color:var(--accent);margin-bottom:6px;line-height:1.3;}
-.nov-desc{font-size:12px;color:var(--text-dim);line-height:1.65;}
-.nov-impacto{font-size:11px;color:rgba(58,154,92,.9);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);line-height:1.5;}
-#nov-vazio{text-align:center;padding:50px;color:var(--text-faint);}
-
+/* NOTICIAS */
+#noticias-wrap{margin-top:20px;}
+#noticias-wrap h3{font-family:'Playfair Display',serif;font-size:15px;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+#noticias-wrap h3 span{font-size:9px;color:var(--text-faint);font-family:'Lato',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:1px;}
+.noticia-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;transition:border-color .2s;display:flex;gap:10px;align-items:flex-start;}
+.noticia-card:hover{border-color:var(--border2);}
+.noticia-fonte{font-size:8px;font-family:'JetBrains Mono',monospace;color:var(--royal-lt);letter-spacing:.8px;text-transform:uppercase;flex-shrink:0;margin-top:3px;}
+.noticia-body{}
+.noticia-titulo{font-size:13px;color:var(--text);line-height:1.45;margin-bottom:4px;}
+.noticia-titulo a{color:var(--text);transition:color .18s;}
+.noticia-titulo a:hover{color:var(--accent);}
+.noticia-data{font-size:10px;color:var(--text-faint);}
+#noticias-loading{font-size:12px;color:var(--text-faint);padding:10px 0;}
+#noticias-erro{font-size:11px;color:var(--text-faint);padding:8px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;}
 /* DETALHE */
 #det-wrap{animation:fadeIn .25s ease;}
 .det-hdr{border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:18px;}
-.det-badges{display:flex;align-items:center;gap:7px;margin-bottom:8px;}
+.det-badges{display:flex;align-items:center;gap:7px;margin-bottom:8px;flex-wrap:wrap;}
 .det-badge{font-size:9px;padding:2px 8px;border-radius:3px;font-family:'JetBrains Mono',monospace;color:#fff;}
 .det-tribunal{font-size:10px;color:var(--text-faint);}
-.det-titulo{font-family:'Playfair Display',serif;font-size:21px;color:var(--accent);line-height:1.2;margin-bottom:5px;}
+.det-titulo{font-family:'Playfair Display',serif;font-size:20px;color:var(--accent);line-height:1.2;margin-bottom:5px;}
 .det-sigla{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);}
-.abas{display:flex;border-bottom:1px solid var(--border);margin-bottom:18px;}
-.aba{background:transparent;border:none;border-bottom:2px solid transparent;color:var(--text-faint);padding:8px 2px;margin-right:20px;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;transition:all .18s;}
-.aba.on{color:var(--royal-lt);border-bottom-color:var(--royal-lt);}
-.aba:hover{color:var(--text-dim);}
 .bloco{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:14px;}
 .bloco-lbl{font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;}
 .bloco-txt{font-family:'Playfair Display',serif;font-size:14.5px;color:var(--text);line-height:1.8;font-style:italic;}
+.analise-bloco{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:18px;margin-bottom:14px;}
+.analise-bloco .bloco-lbl{color:var(--royal-lt);}
+.analise-txt{font-size:13px;color:var(--text-dim);line-height:1.78;}
+.analise-txt strong{color:var(--text);}
 .tese-bloco{background:rgba(42,79,171,.08);border:1px solid rgba(65,105,200,.25);border-radius:8px;padding:15px;margin-bottom:14px;}
 .tese-bloco .bloco-lbl{color:var(--royal-lt);}
 .tese-bloco p{font-size:13px;color:var(--accent);line-height:1.6;}
@@ -130,49 +124,124 @@ a{color:var(--royal-lt);text-decoration:none;}
 .temas-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
 .ttag{background:var(--royal-dim);border:1px solid var(--border);color:var(--text-dim);padding:3px 10px;border-radius:12px;cursor:pointer;font-size:11px;transition:all .18s;}
 .ttag:hover{border-color:var(--border2);color:var(--accent);}
-.btn-p{background:var(--royal);border:none;color:#fff;padding:9px 20px;border-radius:7px;cursor:pointer;font-size:13px;font-family:'Lato',sans-serif;font-weight:700;transition:background .2s;}
+.btns-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
+.btn-p{background:var(--royal);border:none;color:#fff;padding:10px 18px;border-radius:7px;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;font-weight:700;transition:background .2s;}
 .btn-p:hover{background:var(--royal-lt);}
-.btn-s{background:transparent;border:1px solid var(--border);color:var(--text-faint);padding:4px 10px;border-radius:5px;cursor:pointer;font-size:11px;transition:all .18s;}
-.btn-s:hover{border-color:var(--border2);color:var(--text-dim);}
-#ia-vazio{text-align:center;padding:40px 0;}
-#ia-loading{text-align:center;padding:50px 0;}
-.spin-icon{font-size:28px;animation:spin 1.5s linear infinite;display:block;margin-bottom:12px;}
-#ia-loading p{color:var(--text-faint);font-size:13px;}
-#ia-res{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:18px;}
-#ia-res-hdr{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;}
-#ia-content h2{color:var(--royal-lt);font-size:14px;margin:14px 0 4px;font-family:'Playfair Display',serif;}
-#ia-content h3{color:var(--text-dim);font-size:13px;margin:11px 0 3px;}
-#ia-content p{color:var(--text-dim);font-size:12.5px;line-height:1.7;margin:3px 0;}
-#ia-content li{color:var(--text-dim);font-size:12.5px;line-height:1.6;margin-left:16px;margin-bottom:2px;}
-#ia-content strong{color:var(--text);}
-.fonte-bloco{background:rgba(42,79,171,.06);border:1px solid rgba(65,105,200,.2);border-radius:9px;padding:18px;margin-bottom:12px;}
-.fonte-url{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--royal-lt);word-break:break-all;margin:8px 0 16px;}
-.fonte-obs{font-size:11px;color:var(--text-faint);line-height:1.7;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
-
+.btn-o{background:transparent;border:1px solid var(--border2);color:var(--royal-lt);padding:10px 18px;border-radius:7px;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;font-weight:700;transition:all .2s;}
+.btn-o:hover{background:var(--royal-dim);color:var(--accent);}
+/* NOVIDADES */
+.nov-wrap{animation:fadeIn .25s ease;}
+.nov-hdr{margin-bottom:16px;}
+.nov-hdr h2{font-family:'Playfair Display',serif;font-size:20px;color:var(--accent);}
+.nov-card{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:16px;margin-bottom:10px;animation:fadeIn .3s ease;transition:border-color .2s;}
+.nov-card:hover{border-color:var(--border2);}
+.nov-meta{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
+.nov-fonte{font-size:8.5px;color:var(--royal-lt);font-family:'JetBrains Mono',monospace;letter-spacing:.8px;text-transform:uppercase;}
+.nov-data{font-size:9px;color:var(--text-faint);}
+.nov-tipo-badge{font-size:8px;background:var(--royal-dim);color:var(--text-dim);padding:1px 7px;border-radius:10px;border:1px solid var(--border);}
+.nov-titulo{font-family:'Playfair Display',serif;font-size:15px;color:var(--accent);margin-bottom:6px;line-height:1.3;}
+.nov-desc{font-size:12px;color:var(--text-dim);line-height:1.65;}
+.nov-impacto{font-size:11px;color:rgba(58,154,92,.9);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);line-height:1.5;}
+/* SIMPLIFICANDO */
+#simpl-wrap{animation:fadeIn .25s ease;max-width:800px;}
+#simpl-hdr{margin-bottom:20px;}
+#simpl-hdr h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);display:flex;align-items:center;gap:10px;}
+#simpl-hdr p{font-size:13px;color:var(--text-dim);margin-top:6px;line-height:1.7;}
+#simpl-srch{background:var(--bg2);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;padding:0 14px;gap:8px;margin-bottom:18px;transition:border-color .2s;}
+#simpl-srch:focus-within{border-color:var(--border2);}
+#simpl-srch input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:'Lato',sans-serif;font-size:13px;padding:9px 0;}
+#simpl-srch input::placeholder{color:var(--text-faint);}
+.simpl-cat{margin-bottom:24px;}
+.simpl-cat-titulo{font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:1.8px;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.simpl-cat-titulo::after{content:'';flex:1;height:1px;background:rgba(200,160,32,.2);}
+.termos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;}
+.termo-card{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:15px;transition:border-color .2s;}
+.termo-card:hover{border-color:rgba(200,160,32,.3);}
+.termo-simbolo{font-family:'JetBrains Mono',monospace;font-size:17px;color:var(--gold);margin-bottom:6px;font-weight:500;}
+.termo-nome{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);margin-bottom:6px;}
+.termo-def{font-size:12px;color:var(--text-dim);line-height:1.7;}
+.termo-ex{font-size:11px;color:rgba(200,160,32,.7);margin-top:7px;padding-top:7px;border-top:1px solid rgba(200,160,32,.1);font-style:italic;}
+/* SOBRE */
+#sobre-wrap{animation:fadeIn .3s ease;max-width:620px;margin:0 auto;text-align:center;}
+.sobre-balanca{text-align:center;margin-bottom:20px;}
+.sobre-titulo{font-family:'Playfair Display',serif;font-size:24px;color:var(--accent);margin-bottom:20px;text-align:center;}
+.sobre-deus{background:linear-gradient(135deg,rgba(200,160,32,.1),rgba(200,160,32,.04));border:1px solid rgba(200,160,32,.3);border-radius:10px;padding:22px 26px;margin-bottom:16px;text-align:center;}
+.sobre-deus h3{font-family:'Playfair Display',serif;font-size:17px;color:var(--gold);margin-bottom:12px;}
+.sobre-deus p{font-size:13px;color:var(--text-dim);line-height:1.85;margin-bottom:10px;}
+.sobre-deus p:last-child{margin-bottom:0;}
+.sobre-deus em{color:rgba(200,160,32,.85);font-style:italic;font-family:'Playfair Display',serif;font-size:14px;}
+.sobre-bloco{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:26px 28px;margin-bottom:16px;line-height:1.85;font-size:13.5px;color:var(--text-dim);text-align:left;}
+.sobre-bloco p{margin-bottom:14px;}
+.sobre-bloco p:last-child{margin-bottom:0;}
+.sobre-bloco strong{color:var(--accent);}
+.sobre-bloco em{color:var(--royal-lt);font-style:italic;}
+.sobre-citacao{background:rgba(42,79,171,.08);border:1px solid rgba(65,105,200,.2);border-radius:8px;padding:16px 20px;margin:16px 0;font-family:'Playfair Display',serif;font-size:15px;color:var(--accent);font-style:italic;line-height:1.6;text-align:center;}
+.sobre-rodape{text-align:center;margin-top:20px;padding:18px;background:var(--bg2);border:1px solid rgba(200,160,32,.2);border-radius:10px;}
+.sobre-rodape p{font-size:12px;color:var(--text-faint);line-height:1.8;}
+.sobre-rodape strong{color:var(--gold);}
+.sobre-aviso{font-size:11px;color:#fff !important;margin-top:10px !important;}
+/* VERSICULO DO DIA */
+#versiculo-wrap{background:linear-gradient(135deg,rgba(200,160,32,.13),rgba(200,160,32,.04));border:1px solid rgba(200,160,32,.35);border-radius:10px;padding:18px 22px;margin-top:20px;text-align:center;}
+#versiculo-wrap .v-label{font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;}
+#versiculo-texto{font-family:'Playfair Display',serif;font-size:15px;color:var(--accent);line-height:1.75;font-style:italic;margin-bottom:8px;}
+#versiculo-ref{font-size:11px;color:var(--gold);font-family:'JetBrains Mono',monospace;}
+#versiculo-bencao{font-size:12px;color:rgba(200,160,32,.8);margin-top:10px;font-weight:700;letter-spacing:.3px;}
 /* FOOTER */
-#footer{border-top:1px solid rgba(65,105,200,.08);padding:8px 22px;background:rgba(7,9,15,.9);display:flex;align-items:center;justify-content:space-between;font-size:9.5px;color:var(--text-faint);flex-wrap:wrap;gap:6px;}
-#footer-brand{color:var(--royal-lt);font-family:'Playfair Display',serif;font-size:11px;font-weight:500;}
-#footer-admin{color:var(--text-faint);opacity:.25;}
-#footer-admin:hover{opacity:.7;}
-
-/* MODAL API KEY */
-#modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;align-items:center;justify-content:center;}
-#modal-overlay.open{display:flex;}
-#modal{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:28px 32px;max-width:420px;width:90%;}
-#modal h3{font-family:'Playfair Display',serif;color:var(--accent);font-size:17px;margin-bottom:6px;}
-#modal p{font-size:12px;color:var(--text-faint);margin-bottom:18px;line-height:1.7;}
-#modal input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;outline:none;margin-bottom:14px;}
-#modal input:focus{border-color:var(--border2);}
-.modal-btns{display:flex;gap:8px;}
-.modal-btns button{flex:1;}
+#footer{border-top:1px solid rgba(65,105,200,.08);padding:9px 22px;background:rgba(7,9,15,.9);display:flex;align-items:center;justify-content:space-between;font-size:9.5px;color:var(--text-faint);flex-wrap:wrap;gap:6px;}
+#footer-brand{color:var(--gold);font-family:'Playfair Display',serif;font-size:11px;font-weight:500;}
+#footer-admin{color:var(--text-faint);opacity:.2;}
+#footer-admin:hover{opacity:.6;}
+/* MOBILE */
+@media(max-width:768px){
+  #hdr{height:auto;padding:10px 12px;gap:7px;}
+  #srch{max-width:100%;order:3;width:100%;}
+  #logo{order:1;}
+  #hdr-right{order:2;gap:5px;}
+  #contador{display:none;}
+  #logo-sub{display:none;}
+  #filtros{padding:6px 10px;}
+  .flabel{display:none;}
+  .fb,.fb-sobre{padding:3px 9px;font-size:10px;}
+  #cnt-badge{display:none;}
+  #main{flex-direction:column;overflow:visible;}
+  #lista{width:100%;border-right:none;border-bottom:1px solid var(--border);max-height:260px;}
+  #painel{padding:14px 12px;overflow:visible;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .termos-grid{grid-template-columns:1fr;}
+  .btns-row{flex-direction:column;}
+  .btns-row a,.btns-row button{width:100%;}
+  #simpl-wrap,#sobre-wrap{max-width:100%;}
+}
+@media(max-width:480px){
+  #btn-simpl{font-size:10px;padding:6px 9px;}
+  #btn-nov{font-size:10px;padding:6px 9px;}
+  #btn-home{font-size:10px;padding:5px 9px;}
+}
 </style>
 </head>
 <body>
 
-<!-- AVISO DE BOAS-VINDAS -->
+<!-- AVISO INICIAL -->
 <div id="aviso-overlay">
   <div id="aviso-box">
-    <div id="aviso-icon">⚖️</div>
+    <!-- Balança SVG elegante -->
+    <svg width="60" height="56" viewBox="0 0 60 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto 4px;display:block">
+      <rect x="28.5" y="4" width="3" height="44" rx="1.5" fill="#3a62cc"/>
+      <rect x="10" y="15" width="40" height="2.5" rx="1.25" fill="#c8d8ff"/>
+      <rect x="28.5" y="4" width="3" height="3" rx="1.5" fill="#c8a020"/>
+      <circle cx="30" cy="4" r="3" fill="#c8a020"/>
+      <!-- prato esquerdo -->
+      <line x1="15" y1="17.5" x2="10" y2="28" stroke="#6878a0" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="15" y1="17.5" x2="20" y2="28" stroke="#6878a0" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M8 28 Q15 32 22 28" stroke="#c8d8ff" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- prato direito -->
+      <line x1="45" y1="17.5" x2="40" y2="28" stroke="#6878a0" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="45" y1="17.5" x2="50" y2="28" stroke="#6878a0" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M38 28 Q45 32 52 28" stroke="#c8d8ff" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- base -->
+      <rect x="22" y="47" width="16" height="2.5" rx="1.25" fill="#3a62cc"/>
+      <rect x="18" y="49.5" width="24" height="2.5" rx="1.25" fill="#2a4fab"/>
+    </svg>
     <h2>Bem-vindo ao LEXBRASIL</h2>
     <p>Este site é <strong style="color:var(--accent)">sem fins lucrativos</strong> e foi criado para facilitar estudos e pesquisas jurídicas.<br><br>
     Tentaremos manter o conteúdo o mais atualizado possível, mas <strong style="color:var(--accent)">confira sempre nos sites oficiais</strong> do governo e dos tribunais antes de tomar qualquer decisão.</p>
@@ -182,16 +251,32 @@ a{color:var(--royal-lt);text-decoration:none;}
 
 <!-- HEADER -->
 <div id="hdr">
-  <div id="logo">
-    <div id="logo-icon">⚖️</div>
+  <div id="logo" onclick="irHome()">
+    <div class="logo-icone">
+      <!-- Balança SVG mini para o logo -->
+      <svg width="20" height="19" viewBox="0 0 60 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="28.5" y="4" width="3" height="44" rx="1.5" fill="#c8d8ff"/>
+        <rect x="10" y="15" width="40" height="2.5" rx="1.25" fill="#c8d8ff"/>
+        <circle cx="30" cy="4" r="3" fill="#c8a020"/>
+        <line x1="15" y1="17.5" x2="10" y2="28" stroke="#8aa0d0" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="15" y1="17.5" x2="20" y2="28" stroke="#8aa0d0" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M8 28 Q15 32 22 28" stroke="#c8d8ff" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <line x1="45" y1="17.5" x2="40" y2="28" stroke="#8aa0d0" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="45" y1="17.5" x2="50" y2="28" stroke="#8aa0d0" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M38 28 Q45 32 52 28" stroke="#c8d8ff" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <rect x="22" y="47" width="16" height="2.5" rx="1.25" fill="#c8d8ff"/>
+        <rect x="18" y="49.5" width="24" height="2.5" rx="1.25" fill="#a0b8e8"/>
+      </svg>
+    </div>
     <div>
       <div id="logo-name">LEXBRASIL</div>
-      <div id="logo-sub">Sistema Juridico Integrado</div>
+      <div id="logo-sub">Sistema Jurídico Integrado</div>
     </div>
   </div>
+  <button id="btn-home" onclick="irHome()">🏠 Início</button>
   <div id="srch">
     <span style="font-size:12px;color:var(--text-faint)">🔍</span>
-    <input type="text" placeholder="Buscar lei, numero, sumula, tema... ex: LEP, progressao de regime" oninput="buscar(this.value)">
+    <input type="text" id="srch-input" placeholder="Buscar lei, súmula, tema... ex: LEP, progressão" oninput="buscar(this.value)">
   </div>
   <div id="hdr-right">
     <div id="contador" title="Total de acessos ao sistema">
@@ -199,8 +284,8 @@ a{color:var(--royal-lt);text-decoration:none;}
       <span id="cnt-num">...</span>
       <span>acessos</span>
     </div>
+    <button id="btn-simpl" onclick="mostrarSimplificando()">✦ Simplificando o Direito</button>
     <button id="btn-nov" onclick="mostrarNovidades()">🔔 Novidades</button>
-    <div id="upd-txt">Atualizado:<br><span id="upd-val">—</span></div>
   </div>
 </div>
 
@@ -209,9 +294,10 @@ a{color:var(--royal-lt);text-decoration:none;}
   <span class="flabel">Filtrar</span>
   <button class="fb on"  onclick="setFiltro('todos',this)">Todos</button>
   <button class="fb"     onclick="setFiltro('norma',this)">📜 Normas</button>
-  <button class="fb"     onclick="setFiltro('sumula',this)">⚖️ Sumulas STF</button>
+  <button class="fb"     onclick="setFiltro('sumula',this)">⚖️ Súmulas</button>
   <button class="fb"     onclick="setFiltro('sumula_vinculante',this)">🔒 Vinculantes</button>
-  <button class="fb"     onclick="setFiltro('repercussao',this)">🏛️ Repercussao Geral</button>
+  <button class="fb"     onclick="setFiltro('repercussao',this)">🏛️ Rep. Geral</button>
+  <button class="fb-sobre" onclick="mostrarSobre()">💙 Sobre o Site</button>
   <span id="cnt-badge"></span>
 </div>
 
@@ -223,379 +309,443 @@ a{color:var(--royal-lt);text-decoration:none;}
 
 <!-- FOOTER -->
 <div id="footer">
-  <div>LEXBRASIL · Sem fins lucrativos · Fontes: Planalto · STF · STJ · TST · Consulte sempre um advogado habilitado</div>
-  <div id="footer-brand">Criado por GBSJUNIOR</div>
+  <div>LEXBRASIL · Sem fins lucrativos · Planalto · STF · STJ · TST · Consulte sempre um advogado habilitado</div>
+  <div id="footer-brand">Idealizado pelos acadêmicos GBSJÚNIOR e RBPRAMIO · 2026</div>
   <a href="/admin.html" id="footer-admin">admin</a>
 </div>
 
-<!-- MODAL API KEY -->
-<div id="modal-overlay">
-  <div id="modal">
-    <h3>🔑 API Key Anthropic</h3>
-    <p>Para analise com IA, voce precisa de uma chave pessoal gratuita.<br>Obtenha em <strong>console.anthropic.com</strong></p>
-    <input type="password" id="modal-input" placeholder="sk-ant-api03-...">
-    <div class="modal-btns">
-      <button class="btn-s" onclick="fecharModal()">Cancelar</button>
-      <button class="btn-p" onclick="salvarChave()">Salvar e Analisar</button>
-    </div>
-  </div>
-</div>
-
 <script>
-// ===================================================
-// AVISO INICIAL
-// ===================================================
+// ── AVISO ──────────────────────────────────────────────
 function fecharAviso(){
   const el=document.getElementById("aviso-overlay");
   el.style.opacity="0";el.style.transition="opacity .4s";
   setTimeout(()=>el.style.display="none",400);
 }
+function irHome(){
+  document.getElementById("srch-input").value="";
+  buscar("");renderWelcome();
+  document.querySelectorAll(".ic").forEach(c=>c.classList.remove("sel"));
+}
 
-// ===================================================
-// NORMAS
-// ===================================================
+// ── NORMAS ─────────────────────────────────────────────
 const NORMAS=[
-  {id:"cf",nome:"Constituicao Federal de 1988",sigla:"CF/88",url:"https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm",keywords:["constituicao","direitos fundamentais","garantias","republica","federacao","habeas corpus","mandado"]},
-  {id:"cp",numero:"2848",nome:"Codigo Penal",sigla:"CP",url:"https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm",keywords:["crime","pena","tipificacao","ilicito","dolo","culpa","homicidio","furto","roubo"]},
-  {id:"cpp",numero:"3689",nome:"Codigo de Processo Penal",sigla:"CPP",url:"https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm",keywords:["processo penal","inquerito","prisao","flagrante","investigacao","prova","denuncia"]},
-  {id:"cc",numero:"10406",nome:"Codigo Civil",sigla:"CC",url:"https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm",keywords:["contratos","propriedade","familia","obrigacoes","negocio juridico","responsabilidade civil"]},
-  {id:"cpc",numero:"13105",nome:"Codigo de Processo Civil",sigla:"CPC",url:"https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm",keywords:["processo civil","recurso","execucao","tutela","peticao inicial","citacao"]},
-  {id:"clt",numero:"5452",nome:"Consolidacao das Leis do Trabalho",sigla:"CLT",url:"https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm",keywords:["trabalhista","empregado","salario","ferias","rescisao","jornada","ctps"]},
-  {id:"lep",numero:"7210",nome:"Lei de Execucao Penal",sigla:"LEP",url:"https://www.planalto.gov.br/ccivil_03/leis/l7210.htm",keywords:["preso","penitenciaria","regime","progressao","remicao","execucao penal","falta grave"]},
-  {id:"eca",numero:"8069",nome:"Estatuto da Crianca e do Adolescente",sigla:"ECA",url:"https://www.planalto.gov.br/ccivil_03/leis/l8069.htm",keywords:["crianca","adolescente","menor","ato infracional","medida socioeducativa","tutela"]},
-  {id:"cdc",numero:"8078",nome:"Codigo de Defesa do Consumidor",sigla:"CDC",url:"https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",keywords:["consumidor","fornecedor","produto","servico","responsabilidade","vicio","recall"]},
-  {id:"lei9099",numero:"9099",nome:"Lei dos Juizados Especiais",sigla:"JEC/JECRIM",url:"https://www.planalto.gov.br/ccivil_03/leis/l9099.htm",keywords:["juizado especial","menor potencial ofensivo","conciliacao","acordo","JECRIM"]},
-  {id:"lei8112",numero:"8112",nome:"Regime Juridico dos Servidores Publicos",sigla:"RJU",url:"https://www.planalto.gov.br/ccivil_03/leis/l8112cons.htm",keywords:["servidor publico","cargo efetivo","estabilidade","PAD","funcional","posse"]},
-  {id:"lgpd",numero:"13709",nome:"Lei Geral de Protecao de Dados",sigla:"LGPD",url:"https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",keywords:["dados pessoais","privacidade","titular","anpd","tratamento","consentimento"]},
-  {id:"nllc",numero:"14133",nome:"Nova Lei de Licitacoes e Contratos",sigla:"NLLC",url:"https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm",keywords:["licitacao","contrato administrativo","pregao","concorrencia","dispensa","inexigibilidade"]},
-  {id:"ld",numero:"11343",nome:"Lei de Drogas",sigla:"LD",url:"https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11343.htm",keywords:["trafico","entorpecentes","usuario","drogas","antidrogas","traficante"]},
-  {id:"lia",numero:"8429",nome:"Lei de Improbidade Administrativa",sigla:"LIA",url:"https://www.planalto.gov.br/ccivil_03/leis/l8429.htm",keywords:["improbidade","corrupcao","enriquecimento ilicito","agente publico","dano ao erario"]},
-  {id:"lai",numero:"12527",nome:"Lei de Acesso a Informacao",sigla:"LAI",url:"https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12527.htm",keywords:["transparencia","dados publicos","sigilo","acesso","governo","e-sic"]},
-  {id:"acp",numero:"7347",nome:"Lei da Acao Civil Publica",sigla:"ACP",url:"https://www.planalto.gov.br/ccivil_03/leis/l7347orig.htm",keywords:["acao civil publica","meio ambiente","coletivo","ministerio publico","dano coletivo"]},
-  {id:"ldb",numero:"9394",nome:"Lei de Diretrizes e Bases da Educacao",sigla:"LDB",url:"https://www.planalto.gov.br/ccivil_03/leis/l9394.htm",keywords:["educacao","ensino","escola","diretrizes","base nacional","mec"]},
-  {id:"loas",numero:"8742",nome:"Lei Organica da Assistencia Social",sigla:"LOAS",url:"https://www.planalto.gov.br/ccivil_03/leis/l8742.htm",keywords:["assistencia social","bpc","beneficio","vulnerabilidade","idoso","deficiente"]},
-  {id:"laa",numero:"13869",nome:"Lei de Abuso de Autoridade",sigla:"LAA",url:"https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13869.htm",keywords:["abuso de autoridade","agente publico","ilegalidade","crime funcional"]},
-  {id:"cp2",numero:"7565",nome:"Codigo Brasileiro de Aeronautica",sigla:"CBA",url:"https://www.planalto.gov.br/ccivil_03/leis/l7565.htm",keywords:["aeronautica","aviacao","aeronave","infraestrutura aerea"]},
-  {id:"ctb",numero:"9503",nome:"Codigo de Transito Brasileiro",sigla:"CTB",url:"https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",keywords:["transito","multa","habilitacao","cnh","veiculo","acidente"]},
-  {id:"lei9605",numero:"9605",nome:"Lei de Crimes Ambientais",sigla:"LCA",url:"https://www.planalto.gov.br/ccivil_03/leis/l9605.htm",keywords:["crime ambiental","flora","fauna","poluicao","ibama","desmatamento"]},
-  {id:"lei11101",numero:"11101",nome:"Lei de Falencias e Recuperacao Judicial",sigla:"LRF",url:"https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2005/lei/l11101.htm",keywords:["falencia","recuperacao judicial","insolvencia","credores","concordata"]},
-  {id:"lei6015",numero:"6015",nome:"Lei de Registros Publicos",sigla:"LRP",url:"https://www.planalto.gov.br/ccivil_03/leis/l6015compilada.htm",keywords:["registro","nascimento","casamento","obito","imovel","cartorio"]},
+  {id:"cf",nome:"Constituição Federal de 1988",sigla:"CF/88",url:"https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm",
+   analise:"A Constituição Federal de 1988 é a lei máxima do Brasil — nenhuma outra norma pode contrariá-la. Ela organiza o Estado, define os três poderes (Executivo, Legislativo e Judiciário) e garante os direitos fundamentais de todos os cidadãos, como vida, liberdade, igualdade, saúde, educação e segurança. É chamada de 'Constituição Cidadã' por ter sido elaborada após o fim da ditadura militar, com ampla participação popular. Todo o ordenamento jurídico brasileiro deve ser interpretado à luz da CF/88.",
+   keywords:["constituicao","direitos fundamentais","garantias","republica","federacao","habeas corpus","mandado"]},
+  {id:"cp",numero:"2848",nome:"Código Penal",sigla:"CP",url:"https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm",
+   analise:"O Código Penal define o que é crime no Brasil e qual a pena aplicável a cada conduta. Divide-se em Parte Geral (regras de aplicação da pena, culpabilidade, dolo, culpa) e Parte Especial (crimes em espécie: homicídio, furto, roubo, estelionato, etc.). A pena só pode ser aplicada quando há conduta típica, antijurídica e culpável.",
+   keywords:["crime","pena","tipificacao","ilicito","dolo","culpa","homicidio","furto","roubo"]},
+  {id:"cpp",numero:"3689",nome:"Código de Processo Penal",sigla:"CPP",url:"https://www.planalto.gov.br/ccivil_03/decreto-lei/del3689.htm",
+   analise:"O CPP regula como o Estado investiga e julga os crimes. Define as fases do processo: inquérito policial, ação penal, instrução, julgamento e recursos. Estabelece as regras para prisão em flagrante, prisão preventiva, liberdade provisória e produção de provas, sempre com garantia do contraditório e ampla defesa.",
+   keywords:["processo penal","inquerito","prisao","flagrante","investigacao","prova","denuncia"]},
+  {id:"cc",numero:"10406",nome:"Código Civil",sigla:"CC",url:"https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm",
+   analise:"O Código Civil regula as relações entre particulares: contratos, propriedade, família, herança e responsabilidade civil. Entrou em vigor em 2003, substituindo o Código de 1916. Adota a função social da propriedade e dos contratos como princípios centrais. Trata de casamento, união estável, poder familiar, testamento, doação, compra e venda e indenização por danos.",
+   keywords:["contratos","propriedade","familia","obrigacoes","negocio juridico","responsabilidade civil"]},
+  {id:"cpc",numero:"13105",nome:"Código de Processo Civil",sigla:"CPC",url:"https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm",
+   analise:"O CPC de 2015 modernizou o processo civil brasileiro, priorizando a solução consensual de conflitos e a celeridade. Introduziu o IRDR (incidente de resolução de demandas repetitivas), negócio jurídico processual e tutelas provisórias de urgência e evidência. Equilibra o acesso à justiça com a segurança jurídica.",
+   keywords:["processo civil","recurso","execucao","tutela","peticao inicial","citacao"]},
+  {id:"clt",numero:"5452",nome:"Consolidação das Leis do Trabalho",sigla:"CLT",url:"https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm",
+   analise:"A CLT é o principal instrumento de proteção do trabalhador brasileiro. Regulamenta jornada (44h semanais), férias (30 dias), 13º salário, FGTS, aviso prévio, horas extras e rescisão. Foi profundamente reformada em 2017, ampliando a negociação coletiva e criando o trabalho intermitente e o teletrabalho.",
+   keywords:["trabalhista","empregado","salario","ferias","rescisao","jornada","ctps"]},
+  {id:"lep",numero:"7210",nome:"Lei de Execução Penal",sigla:"LEP",url:"https://www.planalto.gov.br/ccivil_03/leis/l7210.htm",
+   analise:"A LEP regula o cumprimento das penas no Brasil. Define os regimes prisionais (fechado, semiaberto e aberto) e as regras para progressão entre eles. Trata da remição de pena pelo trabalho e estudo, das faltas graves que podem regredir o regime, do livramento condicional e das saídas temporárias. A Súmula Vinculante 56 proibiu manter condenados em regime mais gravoso por falta de vaga.",
+   keywords:["preso","penitenciaria","regime","progressao","remicao","execucao penal","falta grave"]},
+  {id:"eca",numero:"8069",nome:"Estatuto da Criança e do Adolescente",sigla:"ECA",url:"https://www.planalto.gov.br/ccivil_03/leis/l8069.htm",
+   analise:"O ECA garante proteção integral a crianças (até 12 anos) e adolescentes (12 a 18 anos). Eles são inimputáveis penalmente, respondendo por atos infracionais com medidas socioeducativas (advertência, liberdade assistida, internação). Proíbe trabalho infantil, abuso e exploração. Regulamenta adoção, guarda e tutela.",
+   keywords:["crianca","adolescente","menor","ato infracional","medida socioeducativa","tutela"]},
+  {id:"cdc",numero:"8078",nome:"Código de Defesa do Consumidor",sigla:"CDC",url:"https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+   analise:"O CDC protege o consumidor nas relações de consumo, reconhecendo sua vulnerabilidade frente ao fornecedor. Garante informação clara, proteção contra propaganda enganosa, direito de arrependimento em 7 dias em compras fora do estabelecimento e troca de produto com vício. Inverte o ônus da prova em favor do consumidor.",
+   keywords:["consumidor","fornecedor","produto","servico","responsabilidade","vicio","recall"]},
+  {id:"lei9099",numero:"9099",nome:"Lei dos Juizados Especiais",sigla:"JEC/JECRIM",url:"https://www.planalto.gov.br/ccivil_03/leis/l9099.htm",
+   analise:"Os Juizados Especiais são varas simplificadas para causas de menor complexidade. O JEC civil atende causas até 40 salários mínimos sem advogado obrigatório. O JECRIM trata de crimes de menor potencial ofensivo (pena máxima até 2 anos), admitindo conciliação, transação penal e suspensão condicional do processo.",
+   keywords:["juizado especial","menor potencial ofensivo","conciliacao","acordo","JECRIM"]},
+  {id:"lei8112",numero:"8112",nome:"Regime Jurídico dos Servidores Públicos",sigla:"RJU",url:"https://www.planalto.gov.br/ccivil_03/leis/l8112cons.htm",
+   analise:"O RJU regula os direitos e deveres dos servidores públicos federais estatutários. Trata de posse, estágio probatório (3 anos para estabilidade), remuneração, licenças, férias, aposentadoria e processo administrativo disciplinar (PAD). O servidor estável só perde o cargo por sentença judicial transitada em julgado ou processo administrativo.",
+   keywords:["servidor publico","cargo efetivo","estabilidade","PAD","funcional","posse"]},
+  {id:"lgpd",numero:"13709",nome:"Lei Geral de Proteção de Dados",sigla:"LGPD",url:"https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+   analise:"A LGPD regula o tratamento de dados pessoais no Brasil. Toda organização que coleta ou usa dados de pessoas deve ter base legal para isso. O titular tem direito de acessar, corrigir, excluir e portar seus dados. A ANPD fiscaliza e pode aplicar multas de até 2% do faturamento ou R$ 50 milhões por infração.",
+   keywords:["dados pessoais","privacidade","titular","anpd","tratamento","consentimento"]},
+  {id:"nllc",numero:"14133",nome:"Nova Lei de Licitações e Contratos",sigla:"NLLC",url:"https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm",
+   analise:"A NLLC de 2021 substituiu a antiga Lei 8.666/93. Criou o Portal Nacional de Contratações Públicas (PNCP), ampliou a transparência e os controles, tornou o pregão e a concorrência as modalidades preferidas e trouxe maior rigor no combate à corrupção em contratos públicos.",
+   keywords:["licitacao","contrato administrativo","pregao","concorrencia","dispensa","inexigibilidade"]},
+  {id:"ld",numero:"11343",nome:"Lei de Drogas",sigla:"LD",url:"https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11343.htm",
+   analise:"A Lei de Drogas distingue o usuário do traficante. O usuário (art. 28) não vai preso — recebe advertência, prestação de serviços ou medida educativa. O traficante (art. 33) responde com pena de 5 a 15 anos. Em 2024, o STF decidiu (Tema 635) que portar cannabis para uso próprio não é crime.",
+   keywords:["trafico","entorpecentes","usuario","drogas","antidrogas","traficante"]},
+  {id:"lia",numero:"8429",nome:"Lei de Improbidade Administrativa",sigla:"LIA",url:"https://www.planalto.gov.br/ccivil_03/leis/l8429.htm",
+   analise:"A LIA pune agentes públicos por atos desonestos. Reformada em 2021, passou a exigir dolo em todos os casos — acabou a responsabilização por culpa. As sanções incluem ressarcimento, multa, suspensão de direitos políticos e proibição de contratar com o poder público.",
+   keywords:["improbidade","corrupcao","enriquecimento ilicito","agente publico","dano ao erario"]},
+  {id:"lai",numero:"12527",nome:"Lei de Acesso à Informação",sigla:"LAI",url:"https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12527.htm",
+   analise:"A LAI garante ao cidadão o direito de solicitar qualquer informação pública ao governo, que deve responder em até 20 dias. O sigilo é exceção — só se aplica a informações classificadas com prazo máximo de 25 anos. Instrumento essencial de controle social e combate à corrupção.",
+   keywords:["transparencia","dados publicos","sigilo","acesso","governo","e-sic"]},
+  {id:"acp",numero:"7347",nome:"Lei da Ação Civil Pública",sigla:"ACP",url:"https://www.planalto.gov.br/ccivil_03/leis/l7347orig.htm",
+   analise:"A ACP é o principal instrumento para proteger direitos coletivos e difusos: meio ambiente, consumidor, patrimônio histórico, crianças e adolescentes. Pode ser proposta pelo Ministério Público, Defensoria Pública, entes federativos e associações.",
+   keywords:["acao civil publica","meio ambiente","coletivo","ministerio publico","dano coletivo"]},
+  {id:"loas",numero:"8742",nome:"Lei Orgânica da Assistência Social",sigla:"LOAS",url:"https://www.planalto.gov.br/ccivil_03/leis/l8742.htm",
+   analise:"A LOAS regula a assistência social como direito do cidadão, não como caridade. O BPC (Benefício de Prestação Continuada) garante 1 salário mínimo a idosos acima de 65 anos ou pessoas com deficiência que comprovem renda familiar per capita inferior a 1/4 do salário mínimo.",
+   keywords:["assistencia social","bpc","beneficio","vulnerabilidade","idoso","deficiente"]},
+  {id:"laa",numero:"13869",nome:"Lei de Abuso de Autoridade",sigla:"LAA",url:"https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13869.htm",
+   analise:"A LAA pune agentes públicos que abusam do poder para prejudicar alguém ou se beneficiar indevidamente. Exemplos de condutas: decretar prisão ilegal, negar acesso a advogado, violar domicílio sem fundamento legal. O crime exige dolo específico — intenção de prejudicar.",
+   keywords:["abuso de autoridade","agente publico","ilegalidade","crime funcional"]},
+  {id:"ctb",numero:"9503",nome:"Código de Trânsito Brasileiro",sigla:"CTB",url:"https://www.planalto.gov.br/ccivil_03/leis/l9503compilado.htm",
+   analise:"O CTB regula o trânsito de veículos e pedestres nas vias públicas. Define infrações e multas, habilitação (CNH) e crimes de trânsito como embriaguez ao volante (crime desde 6 decigramas de álcool por litro de sangue), homicídio culposo e participação em rachas.",
+   keywords:["transito","multa","habilitacao","cnh","veiculo","acidente"]},
+  {id:"lei9605",numero:"9605",nome:"Lei de Crimes Ambientais",sigla:"LCA",url:"https://www.planalto.gov.br/ccivil_03/leis/l9605.htm",
+   analise:"A LCA pune pessoas físicas e jurídicas por danos ao meio ambiente. Crimes incluem desmatamento, poluição, maus-tratos a animais, tráfico de fauna e flora. A responsabilidade penal da pessoa jurídica é admitida. O IBAMA e os órgãos estaduais são responsáveis pela fiscalização.",
+   keywords:["crime ambiental","flora","fauna","poluicao","ibama","desmatamento"]},
+  {id:"lei11101",numero:"11101",nome:"Lei de Falências e Recuperação Judicial",sigla:"LRF",url:"https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2005/lei/l11101.htm",
+   analise:"A LRF regula a recuperação judicial e a falência de empresas. A recuperação judicial visa preservar a empresa em crise, proteger empregos e pagar credores. A falência é decretada quando a recuperação é inviável, liquidando o patrimônio para pagar credores na ordem legal.",
+   keywords:["falencia","recuperacao judicial","insolvencia","credores","concordata"]},
+  {id:"lei6015",numero:"6015",nome:"Lei de Registros Públicos",sigla:"LRP",url:"https://www.planalto.gov.br/ccivil_03/leis/l6015compilada.htm",
+   analise:"A LRP regula os cartórios de registro: nascimento, casamento, óbito e imóveis. O registro de nascimento é gratuito e obrigatório — dá existência legal à pessoa. O registro de imóveis garante a propriedade e dá publicidade a todos os atos que afetam o bem.",
+   keywords:["registro","nascimento","casamento","obito","imovel","cartorio"]},
 ];
 
-// ===================================================
-// SUMULAS STF (selecionadas por relevancia)
-// ===================================================
 const SUMULAS=[
-  {id:"s11",numero:11,nome:"Sumula 11 STF",texto:"A legalidade da prisao em flagrante e da pronuncia ao se argui como prejudicial da ordem do dia, em processo-crime.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1559",temas:["Prisao em Flagrante","Processo Penal"]},
-  {id:"s145",numero:145,nome:"Sumula 145 STF",texto:"Nao ha crime, quando a preparacao do flagrante pela policia torna impossivel a sua consumacao.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=2251",temas:["Flagrante Preparado","Flagrante Provocado","Direito Penal"]},
-  {id:"s231",numero:231,nome:"Sumula 231 STF",texto:"O reuincidente nao tem direito a suspensao condicional da pena.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=2434",temas:["Reincidencia","Sursis","Execucao Penal"]},
-  {id:"s444",numero:444,nome:"Sumula 444 STJ",texto:"E vedada a utilizacao de inqueritos policiais e acoes penais em curso para agravar a pena-base.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",temas:["Dosimetria","Pena-base","Antecedentes"]},
-  {id:"s522",numero:522,nome:"Sumula 522 STJ",texto:"A conduta de atribuir-se falsa identidade perante autoridade policial e tipificada como o delito previsto no art. 307 do CP, ainda que em situacao de alegada autodefesa.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",temas:["Falsa Identidade","Autodefesa","Direito Penal"]},
-  {id:"s545",numero:545,nome:"Sumula 545 STJ",texto:"Quando a confissao for utilizada para a formacao do convencimento do julgador, o reu fara jus a atenuante prevista no artigo 65, III, d, do Codigo Penal.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",temas:["Confissao","Atenuante","Dosimetria"]},
-  {id:"s611",numero:611,nome:"Sumula 611 STF",texto:"Transitada em julgado a sentenca condenatoria, compete ao juizo das execucoes a aplicacao de lei mais benigna.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1645",temas:["Execucao Penal","Lei mais benigna","LEP"]},
-  {id:"s680",numero:680,nome:"Sumula 680 STF",texto:"O direito ao auxilio-reclusao e assegurado ao preso em regime fechado.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1706",temas:["Previdencia","Auxilio-reclusao","Regime Fechado"]},
-  {id:"s718",numero:718,nome:"Sumula 718 STF",texto:"A opiniao do julgador sobre a gravidade em abstrato do crime nao constitui motivacao idonea para a imposicao de regime mais severo do que o permitido segundo a pena aplicada.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1743",temas:["Regime de Pena","Dosimetria","Motivacao"]},
-  {id:"s719",numero:719,nome:"Sumula 719 STF",texto:"A imposicao do regime de cumprimento mais severo do que a pena aplicada permitir exige motivacao idonea.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1744",temas:["Regime de Pena","Dosimetria"]},
-  {id:"s723",numero:723,nome:"Sumula 723 STF",texto:"Nao se admite a suspensao condicional do processo por crime continuado, se a soma da pena minima da infracao mais grave com o aumento minimo de um sexto for superior a um ano.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1748",temas:["Crime Continuado","Suspensao Condicional"]},
-  {id:"s736",numero:736,nome:"Sumula 736 STF",texto:"Compete a Justica do Trabalho julgar as acoes que tenham como causa de pedir o descumprimento de normas trabalhistas relativas a seguranca, higiene e saude dos trabalhadores.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1757",temas:["Competencia","Justica do Trabalho"]},
-  {id:"s269",numero:269,nome:"Sumula 269 STF",texto:"O mandado de seguranca nao e substitutivo de acao de cobranca.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=2347",temas:["Mandado de Seguranca","Remedio Constitucional"]},
-  {id:"s271",numero:271,nome:"Sumula 271 STF",texto:"Concessao de mandado de seguranca nao produz efeitos patrimoniais, em relacao a periodo pretérito, os quais devem ser reclamados administrativamente ou pela via judicial propria.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=2349",temas:["Mandado de Seguranca","Efeitos Patrimoniais"]},
-  {id:"s297",numero:297,nome:"Sumula 297 STJ",texto:"Em contrato bancario, e vedado ao julgador conhecer, de oficio, da abusividade das clausulas.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",temas:["Contrato Bancario","CDC","Clausula Abusiva"]},
-  {id:"s309",numero:309,nome:"Sumula 309 STJ",texto:"O debito alimentar que autoriza a prisao civil do alimentante e o que compreende as tres prestacoes anteriores ao ajuizamento da execucao e as que se vencerem no curso do processo.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",temas:["Alimentos","Prisao Civil","Familia"]},
-  {id:"s343",numero:343,nome:"Sumula 343 STF",texto:"Nao cabe acao rescisoria por ofensa a literal dispositivo de lei, quando a decisao rescindenda se tiver baseado em texto legal de interpretacao controvertida nos tribunais.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=2450",temas:["Acao Rescisoria","Coisa Julgada","Processo Civil"]},
-  {id:"s568",numero:568,nome:"Sumula 568 STJ",texto:"O relator, monocraticamente e no Superior Tribunal de Justica, podera dar ou negar provimento ao recurso quando houver entendimento dominante acerca do tema.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",temas:["Recurso","STJ","Relator"]},
-  {id:"s70",numero:70,nome:"Sumula 70 STF",texto:"E inadmissivel a interdependencia de penalidades tributarias com o condicao do seu pagamento para que seja autorizado o contribuinte a exercer suas atividades.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1584",temas:["Tributario","Penalidade","Atividade Economica"]},
-  {id:"s330",numero:330,nome:"Sumula 330 STF",texto:"O Supremo Tribunal Federal nao e competente para conhecer de mandado de injuncao originario, quando a norma regulamentadora cabente for de iniciativa do Presidente da Republica.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=2434",temas:["Mandado de Injuncao","STF","Competencia"]},
+  {id:"s145",numero:145,nome:"Súmula 145 STF",texto:"Não há crime, quando a preparação do flagrante pela polícia torna impossível a sua consumação.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=2251",tribunal:"STF",
+   analise:"Trata do flagrante preparado: quando a própria polícia induz o agente a praticar o crime para prender em flagrante, não há crime — pois a consumação era impossível desde o início. Diferente do flagrante esperado (polícia aguarda o crime), que é lícito.",
+   temas:["Flagrante Preparado","Flagrante Provocado"]},
+  {id:"s231",numero:231,nome:"Súmula 231 STF",texto:"O réu reincidente não tem direito à suspensão condicional da pena.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=2434",tribunal:"STF",
+   analise:"O sursis (suspensão condicional da pena) é benefício que substitui a pena privativa de liberdade por período de prova. Esta súmula veda esse benefício ao reincidente — quem comete novo crime doloso após condenação anterior com trânsito em julgado.",
+   temas:["Reincidência","Sursis","Execução Penal"]},
+  {id:"s444",numero:444,nome:"Súmula 444 STJ",texto:"É vedada a utilização de inquéritos policiais e ações penais em curso para agravar a pena-base.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",tribunal:"STJ",
+   analise:"Só condenações com trânsito em julgado podem ser usadas como antecedentes criminais para aumentar a pena-base. Inquéritos e processos em andamento não comprovam culpa e não podem prejudicar o réu. Decorre do princípio da presunção de inocência.",
+   temas:["Dosimetria","Pena-base","Antecedentes"]},
+  {id:"s522",numero:522,nome:"Súmula 522 STJ",texto:"A conduta de atribuir-se falsa identidade perante autoridade policial é tipificada como o delito previsto no art. 307 do CP.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",tribunal:"STJ",
+   analise:"Mesmo alegando autodefesa, mentir sobre a própria identidade a autoridade policial configura o crime de falsa identidade (art. 307 CP). O direito de não se autoincriminar não protege a conduta ativa de fornecer identificação falsa.",
+   temas:["Falsa Identidade","Autodefesa"]},
+  {id:"s545",numero:545,nome:"Súmula 545 STJ",texto:"Quando a confissão for utilizada para a formação do convencimento do julgador, o réu fará jus à atenuante prevista no artigo 65, III, d, do Código Penal.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",tribunal:"STJ",
+   analise:"Se o juiz usar a confissão do réu para condenar, obrigatoriamente deve aplicar a atenuante de confissão na dosimetria da pena. Não pode o juiz se beneficiar da confissão e ao mesmo tempo ignorar o benefício que ela gera ao réu.",
+   temas:["Confissão","Atenuante","Dosimetria"]},
+  {id:"s611",numero:611,nome:"Súmula 611 STF",texto:"Transitada em julgado a sentença condenatória, compete ao juízo das execuções a aplicação de lei mais benigna.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1645",tribunal:"STF",
+   analise:"Após o trânsito em julgado, se nova lei beneficiar o condenado, cabe ao Juiz da Vara de Execuções Penais aplicá-la — não ao tribunal que julgou o processo. A lei penal mais benéfica retroage sempre, mesmo após condenação definitiva.",
+   temas:["Execução Penal","Lei mais benigna","LEP"]},
+  {id:"s680",numero:680,nome:"Súmula 680 STF",texto:"O direito ao auxílio-reclusão é assegurado ao preso em regime fechado.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1706",tribunal:"STF",
+   analise:"O auxílio-reclusão é pago pelo INSS aos dependentes do segurado preso em regime fechado com baixa renda. É uma proteção previdenciária à família do preso de baixa renda.",
+   temas:["Previdência","Auxílio-reclusão"]},
+  {id:"s718",numero:718,nome:"Súmula 718 STF",texto:"A opinião do julgador sobre a gravidade em abstrato do crime não constitui motivação idônea para a imposição de regime mais severo.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1743",tribunal:"STF",
+   analise:"O juiz não pode impor regime mais severo apenas por considerar o crime grave 'em abstrato'. A gravidade abstrata já foi ponderada pelo legislador ao fixar a pena. Para regime mais gravoso, é preciso fundamentação concreta baseada nas circunstâncias do caso específico.",
+   temas:["Regime de Pena","Dosimetria","Motivação"]},
+  {id:"s719",numero:719,nome:"Súmula 719 STF",texto:"A imposição do regime de cumprimento mais severo do que a pena aplicada permitir exige motivação idônea.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1744",tribunal:"STF",
+   analise:"Complementa a Súmula 718: para impor regime mais grave do que o indicado pela quantidade de pena, o juiz deve apresentar fundamentos concretos. Decorre do princípio da individualização da pena.",
+   temas:["Regime de Pena","Dosimetria"]},
+  {id:"s309",numero:309,nome:"Súmula 309 STJ",texto:"O débito alimentar que autoriza a prisão civil compreende as três prestações anteriores ao ajuizamento e as que vencerem no curso do processo.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",tribunal:"STJ",
+   analise:"A prisão civil do devedor de alimentos só é cabível pela dívida recente (últimas 3 parcelas antes do ajuizamento). Parcelas mais antigas devem ser cobradas por execução comum, sem possibilidade de prisão. Distingue dívida alimentar atual da pretérita.",
+   temas:["Alimentos","Prisão Civil","Família"]},
 ];
 
-// ===================================================
-// SUMULAS VINCULANTES (todas as principais)
-// ===================================================
 const SUMULAS_VIN=[
-  {id:"sv1",numero:1,nome:"Sumula Vinculante 1",texto:"Ofende a garantia constitucional do ato juridico perfeito a decisao que, sem ponderar as circunstancias do caso concreto, desconsidera a validez e a eficacia de acordo constante de termo de adesao instituido pela Lei Complementar n. 110/2001.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1227",temas:["Ato Juridico Perfeito","FGTS","Direito Adquirido"]},
-  {id:"sv2",numero:2,nome:"Sumula Vinculante 2",texto:"E inconstitucional a lei ou ato normativo estadual ou distrital que disponha sobre sistemas de consorcio e sorteios, inclusive bingos e loterias.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1228",temas:["Competencia Legislativa","Loterias","Estados"]},
-  {id:"sv3",numero:3,nome:"Sumula Vinculante 3",texto:"Nos processos perante o TCU asseguram-se o contraditorio e a ampla defesa quando da decisao puder resultar anulacao ou revogacao de ato administrativo que beneficie o interessado.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1229",temas:["TCU","Contraditorio","Ampla Defesa"]},
-  {id:"sv4",numero:4,nome:"Sumula Vinculante 4",texto:"Salvo nos casos previstos na Constituicao, o salario minimo nao pode ser usado como indexador de base de calculo de vantagem de servidor publico ou de empregado.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1230",temas:["Salario Minimo","Servidor Publico","Vantagens"]},
-  {id:"sv5",numero:5,nome:"Sumula Vinculante 5",texto:"A falta de defesa tecnica por advogado no processo administrativo disciplinar nao ofende a Constituicao.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1231",temas:["PAD","Defesa Tecnica","Processo Administrativo"]},
-  {id:"sv10",numero:10,nome:"Sumula Vinculante 10",texto:"Viola a clausula de reserva de plenario (CF, artigo 97) a decisao de orgao fracionario de tribunal que, embora nao declare expressamente a inconstitucionalidade de lei ou ato normativo do poder publico, afasta sua incidencia, no todo ou em parte.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1236",temas:["Reserva de Plenario","Inconstitucionalidade","Controle Difuso"]},
-  {id:"sv11",numero:11,nome:"Sumula Vinculante 11",texto:"So e licito o uso de algemas em casos de resistencia e de fundado receio de fuga ou de perigo a integridade fisica propria ou alheia, por parte do preso ou de terceiros.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1237",temas:["Algemas","Preso","Forca Policial","Dignidade"]},
-  {id:"sv12",numero:12,nome:"Sumula Vinculante 12",texto:"A cobranca de taxa de matricula nas universidades publicas viola o disposto no art. 206, IV, da Constituicao Federal.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1238",temas:["Educacao","Universidade Publica","Gratuidade","Taxa"]},
-  {id:"sv13",numero:13,nome:"Sumula Vinculante 13",texto:"A nomeacao de conjuge, companheiro ou parente em linha reta, colateral ou por afinidade, ate o terceiro grau, inclusive, da autoridade nomeante ou de servidor da mesma pessoa juridica, investido em cargo de direcao, chefia ou assessoramento viola a Constituicao Federal.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1239",temas:["Nepotismo","Cargo em Comissao","Moralidade Administrativa"]},
-  {id:"sv14",numero:14,nome:"Sumula Vinculante 14",texto:"E direito do defensor, no interesse do representado, ter acesso amplo aos elementos de prova ja documentados em procedimento investigatorio realizado por orgao com competencia de policia judiciaria.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1240",temas:["Defesa","Inquerito","Acesso aos Autos","OAB"]},
-  {id:"sv16",numero:16,nome:"Sumula Vinculante 16",texto:"Os artigos 7., IV, e 39, par. 3., da Constituicao, referem-se ao salario minimo vigente quando do pagamento e nao a epoca da aquisicao do direito.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1242",temas:["Salario Minimo","Pagamento","Direito Adquirido"]},
-  {id:"sv20",numero:20,nome:"Sumula Vinculante 20",texto:"A Gratificacao de Desempenho de Atividade Tecnico-Administrativa — GDATA, instituida pela Lei 10.404/2002, deve ser deferida aos inativos nos valores correspondentes a 37,5 (trinta e sete virgula cinco) pontos no periodo de fevereiro a maio de 2002.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1246",temas:["Servidor Publico","Gratificacao","Inativo"]},
-  {id:"sv21",numero:21,nome:"Sumula Vinculante 21",texto:"E inconstitucional a exigencia de deposito ou arrolamento previos de dinheiro ou bens para admissibilidade de recurso administrativo.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1247",temas:["Recurso Administrativo","Deposito Previo","Acesso a Justica"]},
-  {id:"sv24",numero:24,nome:"Sumula Vinculante 24",texto:"Nao se tipifica crime material contra a ordem tributaria, previsto no art. 1., incisos I a IV, da Lei n. 8.137/90, antes do lancamento definitivo do tributo.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1250",temas:["Crime Tributario","Lancamento","Ordem Tributaria"]},
-  {id:"sv25",numero:25,nome:"Sumula Vinculante 25",texto:"E ilicita a prisao civil de depositario infiel, qualquer que seja a modalidade do deposito.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1251",temas:["Prisao Civil","Depositario Infiel","Convencao Americana"]},
-  {id:"sv26",numero:26,nome:"Sumula Vinculante 26",texto:"Para efeito de progressao de regime no cumprimento de pena por crime hediondo ou equiparado, o juizo da execucao observara a inconstitucionalidade do art. 2., par. 1., da Lei n. 8.072/90.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1252",temas:["Progressao de Regime","Crime Hediondo","LEP"]},
-  {id:"sv27",numero:27,nome:"Sumula Vinculante 27",texto:"Compete a Justica estadual julgar causas entre consumidor e operadora de plano de saude.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1253",temas:["Competencia","Plano de Saude","Justica Estadual","CDC"]},
-  {id:"sv28",numero:28,nome:"Sumula Vinculante 28",texto:"E inconstitucional a exigencia de deposito previo como requisito de admissibilidade de acao judicial na qual se pretenda discutir a exigibilidade de credito tributario.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1254",temas:["Deposito Previo","Acao Judicial","Tributario","Acesso a Justica"]},
-  {id:"sv29",numero:29,nome:"Sumula Vinculante 29",texto:"E constitucional a adocao, no calculo do valor de taxa, de um ou mais elementos da base de calculo propria de determinado imposto, desde que nao haja integral identidade entre uma base e outra.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1255",temas:["Taxa","Base de Calculo","Tributario"]},
-  {id:"sv33",numero:33,nome:"Sumula Vinculante 33",texto:"Aplicam-se ao servidor publico, no que couber, as regras do regime geral da previdencia social sobre aposentadoria especial de que trata o artigo 40, par. 4., inciso III da Constituicao Federal.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1259",temas:["Aposentadoria Especial","Servidor Publico","Previdencia"]},
-  {id:"sv37",numero:37,nome:"Sumula Vinculante 37",texto:"Nao cabe ao Poder Judiciario, que nao tem funcao legislativa, aumentar vencimentos de servidores publicos sob o fundamento de isonomia.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1263",temas:["Isonomia","Vencimentos","Servidor Publico","Judiciario"]},
-  {id:"sv38",numero:38,nome:"Sumula Vinculante 38",texto:"E competente o municipio para fixar o horario de funcionamento de estabelecimento comercial.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1264",temas:["Municipio","Horario de Funcionamento","Comercio","Competencia"]},
-  {id:"sv45",numero:45,nome:"Sumula Vinculante 45",texto:"A competencia constitucional do Tribunal do Juri prevalece sobre o foro por prerrogativa de funcao estabelecido exclusivamente pela Constituicao estadual.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1271",temas:["Tribunal do Juri","Foro Privilegiado","Competencia"]},
-  {id:"sv56",numero:56,nome:"Sumula Vinculante 56",texto:"A falta de estabelecimento penal adequado nao autoriza a manutencao do condenado em regime prisional mais gravoso, devendo-se observar, nessa hipotese, os parametros fixados no RE 641.320/RS.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1282",temas:["Estabelecimento Penal","Regime Prisional","LEP","Dignidade"]},
-  {id:"sv57",numero:57,nome:"Sumula Vinculante 57",texto:"A imunidade tributaria constante do art. 150, VI, d, da CF/88 aplica-se a livros eletronicos (e-books) e aos suportes exclusivamente utilizados para fixa-los.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1283",temas:["Imunidade Tributaria","Livro Eletronico","E-book","ICMS"]},
-  {id:"sv58",numero:58,nome:"Sumula Vinculante 58",texto:"Inexiste direito a compensacao financeira ou credito fiscal residual em favor do contribuinte que recolhe o ICMS antecipadamente, em regime de substituicao tributaria progressiva.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1284",temas:["ICMS","Substituicao Tributaria","Compensacao"]},
+  {id:"sv3",numero:3,nome:"Súmula Vinculante 3",texto:"Nos processos perante o TCU asseguram-se o contraditório e a ampla defesa quando da decisão puder resultar anulação de ato que beneficie o interessado.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1229",tribunal:"STF",
+   analise:"O TCU, ao rever aposentadorias e outros atos administrativos, deve garantir contraditório e ampla defesa ao interessado — desde que já tenham decorrido 5 anos do ato. Protege a segurança jurídica e a confiança legítima.",
+   temas:["TCU","Contraditório","Ampla Defesa"]},
+  {id:"sv5",numero:5,nome:"Súmula Vinculante 5",texto:"A falta de defesa técnica por advogado no processo administrativo disciplinar não ofende a Constituição.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1231",tribunal:"STF",
+   analise:"No PAD não é obrigatório ter advogado para a defesa ser válida. O servidor pode se defender pessoalmente. Se constituir advogado, este deve ser intimado de todos os atos do processo.",
+   temas:["PAD","Defesa Técnica","Processo Administrativo"]},
+  {id:"sv11",numero:11,nome:"Súmula Vinculante 11",texto:"Só é lícito o uso de algemas em casos de resistência e de fundado receio de fuga ou de perigo à integridade física própria ou alheia.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1237",tribunal:"STF",
+   analise:"O uso de algemas é medida excepcional. Usar algemas desnecessariamente — como para expor o preso midiaticamente — viola a dignidade humana, pode anular o ato processual e sujeita o policial a responder por abuso de autoridade.",
+   temas:["Algemas","Preso","Dignidade"]},
+  {id:"sv13",numero:13,nome:"Súmula Vinculante 13",texto:"A nomeação de cônjuge, companheiro ou parente até terceiro grau de autoridade nomeante para cargo em comissão viola a Constituição.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1239",tribunal:"STF",
+   analise:"O nepotismo é inconstitucional por violar a moralidade e impessoalidade administrativas. A vedação abrange cônjuge, companheiro e parentes até o 3º grau (pais, filhos, irmãos, avós, netos, tios, sobrinhos). Há exceções discutidas caso a caso para cargos políticos.",
+   temas:["Nepotismo","Cargo em Comissão","Moralidade"]},
+  {id:"sv14",numero:14,nome:"Súmula Vinculante 14",texto:"É direito do defensor ter acesso amplo aos elementos de prova já documentados em procedimento investigatório.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1240",tribunal:"STF",
+   analise:"O advogado tem direito de acessar os autos do inquérito mesmo em investigações em curso. A negativa de acesso viola a ampla defesa e pode anular o processo. O STF já anulou prisões pela violação desta súmula.",
+   temas:["Defesa","Inquérito","Acesso aos Autos"]},
+  {id:"sv25",numero:25,nome:"Súmula Vinculante 25",texto:"É ilícita a prisão civil de depositário infiel, qualquer que seja a modalidade do depósito.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1251",tribunal:"STF",
+   analise:"Com o Pacto de San José da Costa Rica, o STF extinguiu a prisão do depositário infiel. Apenas a prisão por dívida alimentar permanece lícita. A CF/88 permitia essa prisão, mas o tratado internacional prevaleceu.",
+   temas:["Prisão Civil","Depositário Infiel"]},
+  {id:"sv26",numero:26,nome:"Súmula Vinculante 26",texto:"Para progressão de regime em crime hediondo, o juízo da execução observará a inconstitucionalidade do art. 2º da Lei 8.072/90.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1252",tribunal:"STF",
+   analise:"A vedação absoluta de progressão de regime para crimes hediondos é inconstitucional. Hoje há progressão com prazos diferenciados: 40% da pena para primários e 60% para reincidentes (Pacote Anticrime de 2019).",
+   temas:["Progressão de Regime","Crime Hediondo","LEP"]},
+  {id:"sv56",numero:56,nome:"Súmula Vinculante 56",texto:"A falta de estabelecimento penal adequado não autoriza a manutenção do condenado em regime prisional mais gravoso.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1282",tribunal:"STF",
+   analise:"Se o Estado não tem vaga no regime adequado, não pode manter o preso em regime mais gravoso. Deve colocá-lo em regime menos grave ou conceder prisão domiciliar. O Estado não pode punir o preso pela própria omissão na construção de vagas.",
+   temas:["Estabelecimento Penal","Regime Prisional","LEP"]},
 ];
 
-// ===================================================
-// TEMAS DE REPERCUSSAO GERAL
-// ===================================================
 const TEMAS=[
-  {id:"rg130",numero:130,nome:"Tema 130 — Repercussao Geral",descricao:"Direito ao silencio e nao autoincriminacao no processo administrativo.",resultado:"Assegurado o direito ao silencio e nao producao de prova contra si mesmo.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000130&base=repercussao",normasRelacionadas:["CF/88","CPP"],temas:["Silencio","Nemo Tenetur","Processo Administrativo"]},
-  {id:"rg143",numero:143,nome:"Tema 143 — Repercussao Geral",descricao:"Exigencia de recolhimento a prisao para apelar no Tribunal do Juri.",resultado:"Inconstitucional. Viola o principio da nao culpabilidade.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000143&base=repercussao",normasRelacionadas:["CF/88","CPP"],temas:["Prisao","Recurso","Tribunal do Juri","Presuncao de Inocencia"]},
-  {id:"rg339",numero:339,nome:"Tema 339 — Repercussao Geral",descricao:"Progressao de regime em crimes hediondos.",resultado:"Possivel a progressao, cumpridos os requisitos legais.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000339&base=repercussao",normasRelacionadas:["LEP","CF/88"],temas:["Crimes Hediondos","Progressao de Regime","Execucao Penal"]},
-  {id:"rg397",numero:397,nome:"Tema 397 — Repercussao Geral",descricao:"Direito fundamental ao esquecimento na internet.",resultado:"Incompativel com a CF/88 a exclusao de conteudo por direito ao esquecimento.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000786&base=repercussao",normasRelacionadas:["CF/88","CC","LGPD"],temas:["Direito ao Esquecimento","Liberdade de Expressao","Internet"]},
-  {id:"rg423",numero:423,nome:"Tema 423 — Repercussao Geral",descricao:"Fixacao de pena-base acima do minimo com motivacao idonea.",resultado:"Viola a Constituicao fixar pena-base acima do minimo sem motivacao idonea.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000423&base=repercussao",normasRelacionadas:["CP","CF/88"],temas:["Dosimetria","Pena-base","Motivacao"]},
-  {id:"rg490",numero:490,nome:"Tema 490 — Repercussao Geral",descricao:"Marco temporal para demarcacao de terras indigenas.",resultado:"Fixado o marco temporal da ocupacao indigena em 05/10/1988.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000490&base=repercussao",normasRelacionadas:["CF/88"],temas:["Terras Indigenas","Marco Temporal","Demarcacao"]},
-  {id:"rg555",numero:555,nome:"Tema 555 — Repercussao Geral",descricao:"Reconhecimento da uniao homoafetiva e conversao em casamento.",resultado:"E possivel a conversao de uniao homoafetiva em casamento.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000555&base=repercussao",normasRelacionadas:["CF/88","CC"],temas:["Uniao Homoafetiva","Casamento","Familia","LGBTQIA+"]},
-  {id:"rg580",numero:580,nome:"Tema 580 — Repercussao Geral",descricao:"Cumulatividade das qualificadoras do homicidio doloso.",resultado:"E possivel a utilizacao de mais de uma qualificadora no homicidio doloso.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000580&base=repercussao",normasRelacionadas:["CP"],temas:["Homicidio","Qualificadoras","Direito Penal"]},
-  {id:"rg635",numero:635,nome:"Tema 635 — Repercussao Geral",descricao:"Porte de drogas para consumo proprio — criminalizacao.",resultado:"Descriminalizacao do porte de cannabis para uso proprio. Nao e crime.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001142&base=repercussao",normasRelacionadas:["LD","CF/88"],temas:["Drogas","Cannabis","Descriminalizacao","Porte"]},
-  {id:"rg760",numero:760,nome:"Tema 760 — Repercussao Geral",descricao:"Medicamentos de alto custo e obrigacao do Estado de fornece-los.",resultado:"Obrigatoriedade solidaria dos entes federativos em fornecer medicamentos.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000760&base=repercussao",normasRelacionadas:["CF/88"],temas:["Saude","Medicamento","Direito Fundamental","SUS"]},
-  {id:"rg941",numero:941,nome:"Tema 941 — Repercussao Geral",descricao:"Constitucionalidade do Regime Disciplinar Diferenciado — RDD.",resultado:"O RDD e constitucional quando aplicado em situacoes excepcionais fundamentadas.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000941&base=repercussao",normasRelacionadas:["LEP","CF/88"],temas:["RDD","LEP","Regime Disciplinar","Isolamento"]},
-  {id:"rg988",numero:988,nome:"Tema 988 — Repercussao Geral",descricao:"Constitucionalidade das medidas de lockdown e restricoes sanitarias.",resultado:"Constitucional a imposicao de medidas restritivas pelos estados no contexto sanitario.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000988&base=repercussao",normasRelacionadas:["CF/88"],temas:["Pandemia","Lockdown","Saude Publica","Competencia"]},
-  {id:"rg1003",numero:1003,nome:"Tema 1003 — Repercussao Geral",descricao:"Dano moral coletivo por ofensa a direitos difusos e coletivos.",resultado:"E possivel a condenacao por dano moral coletivo independente de dano individual.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001003&base=repercussao",normasRelacionadas:["CF/88","CDC","ACP"],temas:["Dano Moral Coletivo","Direito Difuso","ACP"]},
-  {id:"rg1068",numero:1068,nome:"Tema 1068 — Repercussao Geral",descricao:"Execucao provisoria da pena apos condenacao em segundo grau.",resultado:"Inconstitucional a execucao antecipada da pena antes do transito em julgado.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001068&base=repercussao",normasRelacionadas:["CF/88","CPP"],temas:["Execucao Provisoria","Presuncao de Inocencia","Transito em Julgado"]},
-  {id:"rg1103",numero:1103,nome:"Tema 1103 — Repercussao Geral",descricao:"Abuso de autoridade por magistrados — aplicacao da Lei 13.869/2019.",resultado:"A Lei de Abuso de Autoridade aplica-se a magistrados no exercicio da funcao.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001103&base=repercussao",normasRelacionadas:["LAA","CF/88"],temas:["Abuso de Autoridade","Magistrado","Responsabilidade"]},
+  {id:"rg143",numero:143,nome:"Tema 143 — Repercussão Geral",descricao:"Exigência de recolhimento à prisão para apelar no Tribunal do Júri.",resultado:"Inconstitucional. Viola a presunção de inocência.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000143&base=repercussao",tribunal:"STF",
+   analise:"O CPP exigia que o condenado pelo Júri se recolhesse à prisão para poder apelar. O STF declarou inconstitucional: ninguém pode ser obrigado a se prender para exercer o direito recursal. A presunção de inocência garante a liberdade até o trânsito em julgado.",
+   normasRelacionadas:["CF/88","CPP"],temas:["Prisão","Recurso","Tribunal do Júri"]},
+  {id:"rg339",numero:339,nome:"Tema 339 — Repercussão Geral",descricao:"Progressão de regime em crimes hediondos.",resultado:"Possível a progressão, cumpridos os requisitos legais.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000339&base=repercussao",tribunal:"STF",
+   analise:"Confirmou a inconstitucionalidade da vedação absoluta de progressão para crimes hediondos. O condenado pode progredir cumprindo fração maior da pena: 40% para primários e 60% para reincidentes, conforme o Pacote Anticrime de 2019.",
+   normasRelacionadas:["LEP","CF/88"],temas:["Crimes Hediondos","Progressão de Regime"]},
+  {id:"rg555",numero:555,nome:"Tema 555 — Repercussão Geral",descricao:"Reconhecimento da união homoafetiva e conversão em casamento.",resultado:"Possível a conversão de união homoafetiva em casamento.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000555&base=repercussao",tribunal:"STF",
+   analise:"O STF reconheceu a união homoafetiva como entidade familiar e garantiu sua conversão em casamento, assegurando todos os direitos: herança, previdência, adoção, plano de saúde etc. O CNJ posteriormente obrigou cartórios a celebrar casamentos homoafetivos.",
+   normasRelacionadas:["CF/88","CC"],temas:["União Homoafetiva","Casamento","Família"]},
+  {id:"rg635",numero:635,nome:"Tema 635 — Repercussão Geral",descricao:"Porte de drogas para consumo próprio — criminalização.",resultado:"Descriminalização do porte de cannabis para uso próprio.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001142&base=repercussao",tribunal:"STF",
+   analise:"O STF decidiu que portar cannabis para consumo próprio é descriminalizado — não é crime. O art. 28 da Lei de Drogas foi considerado inconstitucional nessa parte. A decisão não legaliza o consumo público, mas afasta a persecução penal.",
+   normasRelacionadas:["LD","CF/88"],temas:["Drogas","Cannabis","Descriminalização"]},
+  {id:"rg760",numero:760,nome:"Tema 760 — Repercussão Geral",descricao:"Medicamentos de alto custo e obrigação dos entes federativos.",resultado:"Obrigatoriedade solidária de União, estados e municípios.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000760&base=repercussao",tribunal:"STF",
+   analise:"União, estados e municípios são solidariamente responsáveis por fornecer medicamentos e tratamentos de saúde. Para medicamentos não incorporados ao SUS, exige-se registro na ANVISA e comprovação médica da necessidade.",
+   normasRelacionadas:["CF/88"],temas:["Saúde","Medicamento","Direito Fundamental","SUS"]},
+  {id:"rg941",numero:941,nome:"Tema 941 — Repercussão Geral",descricao:"Constitucionalidade do Regime Disciplinar Diferenciado — RDD.",resultado:"O RDD é constitucional quando aplicado em situações excepcionais.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000941&base=repercussao",tribunal:"STF",
+   analise:"O RDD (isolamento de até 22h diárias por até 2 anos) é constitucional como medida excepcional para lideranças de organizações criminosas. Deve ser fundamentado e proporcional — não pode ser usado de forma generalizada.",
+   normasRelacionadas:["LEP","CF/88"],temas:["RDD","LEP","Regime Disciplinar"]},
+  {id:"rg1068",numero:1068,nome:"Tema 1068 — Repercussão Geral",descricao:"Execução provisória da pena após condenação em segundo grau.",resultado:"Inconstitucional a execução antecipada antes do trânsito em julgado.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001068&base=repercussao",tribunal:"STF",
+   analise:"A prisão só pode ser executada após o trânsito em julgado. A execução provisória — prender após condenação em 2ª instância — viola a presunção de inocência da CF/88. Este entendimento gerou intenso debate e afetou diretamente a Operação Lava Jato.",
+   normasRelacionadas:["CF/88","CPP"],temas:["Execução Provisória","Presunção de Inocência"]},
 ];
 
-// ===================================================
-// MAPA GERAL
-// ===================================================
+const TERMOS=[
+  {cat:"Como ler uma lei",simbolo:"Art.",nome:"Artigo",def:"A unidade básica da lei. Cada artigo trata de um assunto específico. A numeração usa o sinal 'o' como ordinal: Art. 1º, Art. 2º, etc.",ex:"'Art. 5º — Todos são iguais perante a lei...' — este é o principal artigo da CF/88."},
+  {cat:"Como ler uma lei",simbolo:"§",nome:"Parágrafo",def:"Complementa ou detalha o artigo principal. O 'parágrafo único' aparece quando há só um complemento. Quando há vários, são numerados: § 1º, § 2º, etc. Lê-se 'parágrafo primeiro', 'parágrafo segundo'.",ex:"Art. 5º, § 2º da CF/88: 'Os direitos e garantias expressos nesta Constituição não excluem outros...'"},
+  {cat:"Como ler uma lei",simbolo:"I, II, III...",nome:"Inciso",def:"Lista de itens dentro de um artigo ou parágrafo. Identificados por algarismos romanos. Quando a lei diz 'nos seguintes casos:', o que vem depois são os incisos.",ex:"Art. 5º, inciso LXIII: 'o preso será informado de seus direitos...'"},
+  {cat:"Como ler uma lei",simbolo:"a), b), c)...",nome:"Alínea",def:"Subdivisão do inciso. Identificada por letras minúsculas. É uma especificação ainda mais detalhada dentro da lista.",ex:"Art. 44, I, 'a' do CP — trata das penas restritivas de direito."},
+  {cat:"Como ler uma lei",simbolo:"caput",nome:"Caput",def:"É o 'cabeçalho' do artigo — o texto principal antes dos parágrafos e incisos. Quando se menciona apenas o artigo sem especificar parágrafo ou inciso, refere-se ao caput.",ex:"'O caput do art. 5º da CF/88 estabelece a igualdade de todos perante a lei.'"},
+  {cat:"Como ler uma lei",simbolo:"cf. / v.",nome:"Cf. e Vide",def:"Abreviações usadas para referenciar outros dispositivos. 'Cf.' (confira) indica que há dispositivo relacionado. 'V.' (vide) indica que se deve consultar outro artigo.",ex:"'Cf. art. 5º, CF/88' — indica que o leitor deve consultar aquele artigo para contexto."},
+  {cat:"Expressões latinas comuns",simbolo:"in dubio pro reo",nome:"In dubio pro reo",def:"'Na dúvida, a favor do réu.' Princípio fundamental do Direito Penal: se houver dúvida sobre a culpa, o acusado deve ser absolvido. A certeza é necessária para condenar.",ex:"Se as provas não são conclusivas sobre a autoria do crime, o juiz absolve por esse princípio."},
+  {cat:"Expressões latinas comuns",simbolo:"habeas corpus",nome:"Habeas Corpus",def:"'Que tenhas o corpo.' Remédio constitucional para proteger a liberdade de locomoção contra prisão ilegal ou ameaça de prisão. É gratuito e pode ser impetrado por qualquer pessoa.",ex:"Alguém preso ilegalmente pode ter um habeas corpus impetrado em seu favor para ser solto."},
+  {cat:"Expressões latinas comuns",simbolo:"nemo tenetur",nome:"Nemo tenetur se detegere",def:"'Ninguém é obrigado a se descobrir.' Direito de não produzir prova contra si mesmo. O acusado tem direito ao silêncio sem que isso seja interpretado como culpa.",ex:"O suspeito não é obrigado a responder perguntas que o incriminem — pode ficar em silêncio."},
+  {cat:"Expressões latinas comuns",simbolo:"ex officio",nome:"Ex Officio",def:"'Por obrigação do cargo.' Quando uma autoridade age por iniciativa própria, sem pedido da parte, porque é seu dever legal.",ex:"O juiz, de ofício, pode declarar a nulidade absoluta de um ato processual."},
+  {cat:"Expressões latinas comuns",simbolo:"sine qua non",nome:"Sine Qua Non",def:"'Sem a qual não.' Condição indispensável, requisito essencial. Se não existir, o efeito jurídico não ocorre.",ex:"O dolo é condição sine qua non para a configuração do crime doloso."},
+  {cat:"Expressões latinas comuns",simbolo:"ad referendum",nome:"Ad Referendum",def:"'Para ser referendado.' Ato praticado por uma autoridade que depende de confirmação posterior de outro órgão para ter validade definitiva.",ex:"Medida Provisória editada pelo Presidente ad referendum do Congresso Nacional."},
+  {cat:"Termos do Processo",simbolo:"⚖️",nome:"Contraditório",def:"Direito de ser informado de tudo que acontece no processo e de poder responder, contestar provas e argumentos da parte contrária. É direito constitucional garantido pelo art. 5º, LV da CF/88.",ex:"A parte acusada tem direito de responder à denúncia e produzir provas em seu favor."},
+  {cat:"Termos do Processo",simbolo:"⚖️",nome:"Ampla Defesa",def:"Direito de usar todos os meios e recursos possíveis para se defender em um processo. Inclui direito a advogado, a produção de provas e a recorrer de decisões desfavoráveis.",ex:"Ter advogado público (Defensoria) garante a ampla defesa a quem não pode pagar."},
+  {cat:"Termos do Processo",simbolo:"⚖️",nome:"Trânsito em Julgado",def:"Momento em que uma decisão judicial se torna definitiva e irrecorrível — quando não cabe mais nenhum recurso. A partir daí, a decisão deve ser cumprida.",ex:"Após o trânsito em julgado, o condenado inicia o cumprimento da pena."},
+  {cat:"Termos do Processo",simbolo:"⚖️",nome:"Prescrição",def:"Perda do direito de punir ou cobrar pelo decurso do tempo. Se o Estado demorar demais para agir, o crime ou a dívida prescrevem e não podem mais ser exigidos.",ex:"Um crime com pena máxima de 4 anos prescreve em 8 anos sem movimentação do processo."},
+  {cat:"Termos do Processo",simbolo:"⚖️",nome:"Decadência",def:"Perda de um direito pela inação do titular dentro do prazo legal. Diferente da prescrição, atinge o próprio direito — não apenas a ação para reclamá-lo.",ex:"O ofendido tem 6 meses para oferecer queixa-crime; após isso, o direito decai."},
+  {cat:"Termos do Processo",simbolo:"⚖️",nome:"Liminar",def:"Decisão judicial urgente e provisória tomada antes do julgamento definitivo, para evitar dano irreparável. É uma 'tutela de urgência' — o juiz age rápido sem ouvir o outro lado.",ex:"Liminar suspendendo uma demissão ilegal enquanto o processo principal corre."},
+  {cat:"Termos do Processo",simbolo:"⚖️",nome:"Ônus da Prova",def:"Responsabilidade de provar os fatos. Geralmente quem alega tem o ônus de provar. No CDC, o ônus é invertido: o fornecedor deve provar que não fez o que o consumidor alega.",ex:"No processo penal, o MP deve provar a culpa — o réu não precisa provar inocência."},
+  {cat:"Termos do Processo",simbolo:"⚖️",nome:"Recurso",def:"Pedido para que um órgão superior revise uma decisão judicial. Os principais recursos são: apelação, recurso especial (STJ), recurso extraordinário (STF) e embargos de declaração.",ex:"Condenado em 1ª instância pode apelar para o Tribunal de Justiça."},
+  {cat:"Direito Penal — Básico",simbolo:"🔒",nome:"Dolo",def:"Intenção de praticar o crime. Agir com dolo significa querer o resultado ou assumir o risco de produzi-lo. A maioria dos crimes só é punida quando há dolo.",ex:"Matar alguém com intenção de matar é homicídio doloso (art. 121 CP)."},
+  {cat:"Direito Penal — Básico",simbolo:"🔒",nome:"Culpa",def:"Causar o resultado por negligência (descuido), imprudência (agir sem cautela) ou imperícia (falta de habilidade técnica). Não há intenção — o resultado não era desejado.",ex:"Matar alguém em acidente de trânsito por imprudência é homicídio culposo."},
+  {cat:"Direito Penal — Básico",simbolo:"🔒",nome:"Flagrante",def:"Prisão no momento em que o crime está sendo cometido ou logo após. Qualquer pessoa pode efetuar prisão em flagrante — não apenas policiais.",ex:"Prender um assaltante que acabou de roubar uma loja é uma prisão em flagrante."},
+  {cat:"Direito Penal — Básico",simbolo:"🔒",nome:"Prisão Preventiva",def:"Prisão decretada pelo juiz antes do julgamento quando há necessidade urgente: garantir a investigação, evitar fuga ou proteger a sociedade. Exige decisão judicial fundamentada.",ex:"Investigado que ameaça testemunhas pode ter prisão preventiva decretada."},
+  {cat:"Direito Penal — Básico",simbolo:"🔒",nome:"Liberdade Provisória",def:"Permissão para o preso aguardar o julgamento em liberdade, geralmente com condições (pagar fiança, comparecer a juízo, etc.). Alternativa à prisão preventiva.",ex:"Preso em flagrante pode ser liberado com fiança enquanto aguarda o julgamento."},
+  {cat:"Direito Penal — Básico",simbolo:"🔒",nome:"Reincidência",def:"Prática de novo crime doloso após já ter sido condenado por sentença definitiva anterior. A reincidência agrava a pena e impede benefícios como o sursis.",ex:"Condenado por furto que, após cumprir a pena, pratica outro crime é reincidente."},
+  {cat:"Direito Civil — Básico",simbolo:"📋",nome:"Pessoa Jurídica",def:"Empresa, associação, fundação ou entidade que tem existência legal própria, separada das pessoas que a compõem. Pode ter CNPJ, bens e obrigações.",ex:"Uma Ltda. é uma pessoa jurídica — seus sócios não respondem pessoalmente pelas dívidas da empresa (regra geral)."},
+  {cat:"Direito Civil — Básico",simbolo:"📋",nome:"Solidariedade",def:"Quando dois ou mais devedores respondem pela integralidade da dívida. O credor pode cobrar tudo de qualquer um deles — não precisa cobrar de todos.",ex:"Em acidente com dois motoristas culpados, a vítima pode cobrar todo o valor de qualquer um."},
+  {cat:"Direito Civil — Básico",simbolo:"📋",nome:"Usucapião",def:"Aquisição de propriedade pelo uso prolongado e pacífico de um bem. Quem ocupa um imóvel por determinado prazo (varia conforme o tipo) pode se tornar proprietário.",ex:"Morar em imóvel abandonado por 15 anos ininterruptos pode gerar direito a usucapião."},
+  {cat:"Direito Civil — Básico",simbolo:"📋",nome:"Caução ou Garantia",def:"Algo dado em garantia de uma obrigação. Se a dívida não for paga, o credor pode ficar com a garantia. Ex: hipoteca (imóvel), penhor (bem móvel), fiança (terceiro garante).",ex:"Banco exige hipoteca do apartamento como garantia para conceder financiamento imobiliário."},
+];
+
 const CORES={norma:"#1a4a9a",sumula:"#1a3a8a",sumula_vinculante:"#5a1a7a",repercussao:"#1a5a7a"};
-const LABELS={norma:"Norma",sumula:"Sumula",sumula_vinculante:"S. Vinculante",repercussao:"Rep. Geral"};
-const TODOS=[
-  ...NORMAS.map(n=>({...n,categoria:"norma"})),
-  ...SUMULAS.map(s=>({...s,categoria:"sumula"})),
-  ...SUMULAS_VIN.map(s=>({...s,categoria:"sumula_vinculante"})),
-  ...TEMAS.map(t=>({...t,categoria:"repercussao"})),
-];
+const LABELS={norma:"Norma",sumula:"Súmula",sumula_vinculante:"S. Vinculante",repercussao:"Rep. Geral"};
+const TODOS=[...NORMAS.map(n=>({...n,categoria:"norma"})),...SUMULAS.map(s=>({...s,categoria:"sumula"})),...SUMULAS_VIN.map(s=>({...s,categoria:"sumula_vinculante"})),...TEMAS.map(t=>({...t,categoria:"repercussao"}))];
 
-// ===================================================
-// ESTADO
-// ===================================================
-let filtro="todos",itemAtivo=null,aba="info",cache={},mostrarTodos=false,resultados=[],novidades=[],pendingIA=false;
-let apiKey=localStorage.getItem("lex_key")||"";
+let filtro="todos",itemAtivo=null,mostrarTodos=false,resultados=[],novidades=[];
 
-// ===================================================
-// INIT
-// ===================================================
 window.onload=async()=>{
-  buscar("");
-  renderWelcome();
+  buscar("");renderWelcome();
   await Promise.all([carregarNovidades(),registrarAcesso()]);
 };
 
-// ===================================================
-// CONTADOR
-// ===================================================
 async function registrarAcesso(){
   const hoje=new Date().toDateString();
-  if(sessionStorage.getItem("lex_acesso")!==hoje){
-    sessionStorage.setItem("lex_acesso",hoje);
-    fetch("/api/acesso",{method:"POST"}).catch(()=>{});
-  }
-  try{
-    const r=await fetch("/api/acesso");
-    if(r.ok){const d=await r.json();atualizarContador(d.total||0);}
-    else{const l=parseInt(localStorage.getItem("lex_cnt")||"0")+1;localStorage.setItem("lex_cnt",l);atualizarContador(l);}
-  }catch(e){
-    const l=parseInt(localStorage.getItem("lex_cnt")||"0")+1;
-    localStorage.setItem("lex_cnt",l);atualizarContador(l);
-  }
+  if(sessionStorage.getItem("lex_acesso")!==hoje){sessionStorage.setItem("lex_acesso",hoje);fetch("/api/acesso",{method:"POST"}).catch(()=>{});}
+  try{const r=await fetch("/api/acesso");if(r.ok){const d=await r.json();atualizarContador(d.total||0);}else{const l=parseInt(localStorage.getItem("lex_cnt")||"0")+1;localStorage.setItem("lex_cnt",l);atualizarContador(l);}}
+  catch(e){const l=parseInt(localStorage.getItem("lex_cnt")||"0")+1;localStorage.setItem("lex_cnt",l);atualizarContador(l);}
 }
 function atualizarContador(n){document.getElementById("cnt-num").textContent=n.toLocaleString("pt-BR");}
 
-// ===================================================
-// NOVIDADES
-// ===================================================
 async function carregarNovidades(){
-  try{
-    const r=await fetch("/api/novidades");
-    if(!r.ok)throw new Error();
-    const d=await r.json();novidades=d.novidades||[];
-    if(d.ultima_atualizacao){document.getElementById("upd-val").textContent=d.ultima_atualizacao;document.getElementById("upd-txt").style.display="block";}
-  }catch(e){novidades=[];}
+  try{const r=await fetch("/api/novidades");if(!r.ok)throw new Error();const d=await r.json();novidades=d.novidades||[];}catch(e){novidades=[];}
 }
+
+// ── NOTÍCIAS DO DIA (via API pública do Google News RSS) ──
+async function carregarNoticias(){
+  const el=document.getElementById("noticias-lista");if(!el)return;
+  el.innerHTML='<div id="noticias-loading">Carregando notícias jurídicas...</div>';
+  const query=encodeURIComponent("STF OR STJ OR direito OR lei OR tribunal Brasil");
+  const rss=`https://news.google.com/rss/search?q=${query}&hl=pt-BR&gl=BR&ceid=BR:pt-419`;
+  const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}&api_key=public&count=6`;
+  try{
+    const r=await fetch(api);const d=await r.json();
+    if(!d.items||!d.items.length)throw new Error();
+    el.innerHTML=d.items.map(item=>{
+      const data=new Date(item.pubDate).toLocaleDateString("pt-BR",{day:"2-digit",month:"short"});
+      const fonte=item.author||new URL(item.link).hostname.replace("www.","");
+      return`<div class="noticia-card">
+        <div class="noticia-fonte">${fonte.slice(0,12)}</div>
+        <div class="noticia-body">
+          <div class="noticia-titulo"><a href="${item.link}" target="_blank">${item.title}</a></div>
+          <div class="noticia-data">${data}</div>
+        </div>
+      </div>`;
+    }).join("");
+  }catch(e){
+    el.innerHTML='<div id="noticias-erro">Notícias temporariamente indisponíveis. <a href="https://news.google.com/search?q=STF+direito+brasil&hl=pt-BR" target="_blank">Ver no Google Notícias →</a></div>';
+  }
+}
+
 function mostrarNovidades(){
   itemAtivo=null;document.querySelectorAll(".ic").forEach(c=>c.classList.remove("sel"));
   const p=document.getElementById("painel");
-  if(!novidades.length){
-    p.innerHTML='<div id="nov-vazio"><div style="font-size:36px;margin-bottom:12px">🔔</div><div style="color:var(--text-faint);font-family:Playfair Display,serif;font-size:15px">Nenhuma novidade publicada ainda</div><div style="font-size:11px;color:var(--text-faint);margin-top:8px">O administrador ainda nao publicou atualizacoes.</div></div>';
-    return;
-  }
-  const ICON={STF:"🏛",STJ:"⚖",TST:"👷",Planalto:"📜"};
-  p.innerHTML='<div class="nov-wrap"><div class="nov-hdr"><h2>🔔 Novidades Juridicas</h2><div class="sub">Ultima atualizacao: '+document.getElementById("upd-val").textContent+'</div></div>'+
-    novidades.map(n=>'<div class="nov-card"><div class="nov-meta"><span class="nov-fonte">'+(ICON[n.fonte]||"📌")+" "+n.fonte+'</span><span class="nov-tipo-badge">'+n.tipo+'</span><span class="nov-data">'+(n.data_aproximada||"")+'</span></div><div class="nov-titulo">'+n.titulo+'</div><div class="nov-desc">'+n.descricao+"</div>"+(n.impacto?'<div class="nov-impacto">⚡ '+n.impacto+"</div>":"")+"</div>").join("")+"</div>";
+  if(!novidades.length){p.innerHTML='<div style="text-align:center;padding:50px;color:var(--text-faint)"><div style="font-size:36px;margin-bottom:12px">🔔</div><div style="font-family:Playfair Display,serif;font-size:15px">Nenhuma novidade publicada ainda</div></div>';return;}
+  const IC={STF:"🏛",STJ:"⚖",TST:"👷",Planalto:"📜"};
+  p.innerHTML='<div class="nov-wrap"><div class="nov-hdr"><h2>🔔 Novidades Jurídicas</h2></div>'+novidades.map(n=>'<div class="nov-card"><div class="nov-meta"><span class="nov-fonte">'+(IC[n.fonte]||"📌")+" "+n.fonte+'</span><span class="nov-tipo-badge">'+n.tipo+'</span><span class="nov-data">'+(n.data_aproximada||"")+'</span></div><div class="nov-titulo">'+n.titulo+'</div><div class="nov-desc">'+n.descricao+"</div>"+(n.impacto?'<div class="nov-impacto">⚡ '+n.impacto+"</div>":"")+"</div>").join("")+"</div>";
 }
 
-// ===================================================
-// BUSCA
-// ===================================================
+function mostrarSimplificando(){
+  itemAtivo=null;document.querySelectorAll(".ic").forEach(c=>c.classList.remove("sel"));
+  const cats=[...new Set(TERMOS.map(t=>t.cat))];
+  let html='<div id="simpl-wrap"><div id="simpl-hdr"><h2>✦ Simplificando o Direito</h2><p>Entenda os termos jurídicos mais usados — de forma clara, sem complicação. Para quem estuda ou quer compreender melhor seus direitos.</p></div>';
+  html+='<div id="simpl-srch"><span style="font-size:12px;color:var(--text-faint)">🔍</span><input type="text" placeholder="Buscar termo... ex: dolo, parágrafo, prescrição" oninput="filtrarTermos(this.value)"></div>';
+  cats.forEach(cat=>{
+    const itens=TERMOS.filter(t=>t.cat===cat);
+    html+=`<div class="simpl-cat"><div class="simpl-cat-titulo">${cat}</div><div class="termos-grid">`;
+    itens.forEach(t=>{
+      html+=`<div class="termo-card" data-busca="${(t.nome+t.def+t.simbolo).toLowerCase()}"><div class="termo-simbolo">${t.simbolo}</div><div class="termo-nome">${t.nome}</div><div class="termo-def">${t.def}</div>${t.ex?`<div class="termo-ex">📌 ${t.ex}</div>`:""}</div>`;
+    });
+    html+='</div></div>';
+  });
+  html+='</div>';
+  document.getElementById("painel").innerHTML=html;
+}
+function filtrarTermos(q){
+  const t=q.toLowerCase().trim();
+  document.querySelectorAll(".termo-card").forEach(el=>{el.style.display=(!t||el.dataset.busca.includes(t))?"":"none";});
+}
+
+function mostrarSobre(){
+  itemAtivo=null;document.querySelectorAll(".ic").forEach(c=>c.classList.remove("sel"));
+  document.getElementById("painel").innerHTML=`
+  <div id="sobre-wrap">
+    <div class="sobre-balanca">
+      <svg width="80" height="74" viewBox="0 0 60 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="28.5" y="4" width="3" height="44" rx="1.5" fill="#3a62cc"/>
+        <rect x="10" y="15" width="40" height="2.5" rx="1.25" fill="#c8d8ff"/>
+        <circle cx="30" cy="4" r="3.5" fill="#c8a020"/>
+        <line x1="15" y1="17.5" x2="10" y2="28" stroke="#6878a0" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="15" y1="17.5" x2="20" y2="28" stroke="#6878a0" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M8 28 Q15 33 22 28" stroke="#c8d8ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <line x1="45" y1="17.5" x2="40" y2="28" stroke="#6878a0" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="45" y1="17.5" x2="50" y2="28" stroke="#6878a0" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M38 28 Q45 33 52 28" stroke="#c8d8ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <rect x="22" y="47" width="16" height="2.5" rx="1.25" fill="#3a62cc"/>
+        <rect x="18" y="49.5" width="24" height="3" rx="1.5" fill="#2a4fab"/>
+      </svg>
+    </div>
+
+    <div class="sobre-titulo">Sobre o LEXBRASIL</div>
+
+    <div class="sobre-deus">
+      <h3>✝ A Deus, primeiramente.</h3>
+      <p>Nada do que existe aqui seria possível sem Ele. Este projeto nasceu observando o exemplo que veio de cima — da vontade de servir ao próximo com o que nos foi dado aprender. Que cada consulta feita aqui, cada dúvida esclarecida e cada direito compreendido seja também uma forma de honrar a Ele, que é a fonte de toda sabedoria e justiça.</p>
+      <em>"Porque d'Ele, por Ele e para Ele são todas as coisas." — Romanos 11:36</em>
+    </div>
+
+    <div class="sobre-bloco">
+      <p>O LEXBRASIL nasceu de uma ideia simples e poderosa: <strong>tornar o Direito acessível a todos</strong>. Criado por dois acadêmicos que acreditam que compreender a lei não deve ser privilégio de poucos, este sistema reúne normas, súmulas e jurisprudência de forma organizada, clara e gratuita.</p>
+      <p>A inspiração principal veio do exemplo diário de <strong>RBPRAMIO</strong> — sua empatia, senso de justiça e vontade genuína de ajudar o próximo foram o combustível para que este projeto fosse criado. Se ela faz isso com pessoas no seu dia a dia, por que não fazer o mesmo com o conhecimento jurídico?</p>
+      <p>Nosso objetivo é simples: que qualquer pessoa — estudante, servidor, cidadão ou curioso — encontre aqui uma <strong>porta de entrada para entender seus direitos e deveres</strong>, com linguagem acessível e fontes confiáveis.</p>
+    </div>
+
+    <div class="sobre-citacao">"O Direito é de todos. Entendê-lo também deveria ser."</div>
+
+    <div class="sobre-rodape">
+      <p>Idealizado pelos acadêmicos<br><strong>GBSJÚNIOR</strong> e <strong>RBPRAMIO</strong> · 2026</p>
+      <p class="sobre-aviso">Este site é sem fins lucrativos. Sempre consulte um advogado habilitado para casos específicos.</p>
+    </div>
+  </div>`;
+}
+
 function buscar(q){
   const t=(q||"").toLowerCase().trim();
   resultados=TODOS.filter(i=>{
     if(filtro!=="todos"&&i.categoria!==filtro)return false;
     if(!t)return true;
-    return[i.nome||"",i.sigla||"",i.texto||"",i.descricao||"",
-      i.numero?String(i.numero):"",
-      ...(i.keywords||[]),...(i.temas||[]),...(i.normasRelacionadas||[])
-    ].join(" ").toLowerCase().includes(t);
+    return[i.nome||"",i.sigla||"",i.texto||"",i.descricao||"",i.numero?String(i.numero):"",...(i.keywords||[]),...(i.temas||[]),...(i.normasRelacionadas||[])].join(" ").toLowerCase().includes(t);
   });
-  mostrarTodos=false;
-  renderLista(resultados.slice(0,10));
+  mostrarTodos=false;renderLista(resultados.slice(0,10));
   document.getElementById("cnt-badge").textContent=resultados.length+" resultado"+(resultados.length!==1?"s":"");
 }
-function setFiltro(tipo,btn){
-  filtro=tipo;
-  document.querySelectorAll(".fb").forEach(b=>b.classList.remove("on"));
-  btn.classList.add("on");
-  buscar(document.getElementById("srch").querySelector("input").value);
-}
+function setFiltro(tipo,btn){filtro=tipo;document.querySelectorAll(".fb").forEach(b=>b.classList.remove("on"));btn.classList.add("on");buscar(document.getElementById("srch-input").value);}
 
-// ===================================================
-// LISTA
-// ===================================================
 function renderLista(itens){
   const el=document.getElementById("lista");
-  if(!itens.length){el.innerHTML='<div id="lista-empty">📭<br><span style="font-size:12px">Nenhum resultado</span></div>';return;}
-  let html=itens.map(i=>`
-    <div class="ic${itemAtivo?.id===i.id?" sel":""}" onclick="selecionar('${i.id}')">
-      <div class="ic-top">
-        <span class="badge" style="background:${CORES[i.categoria]}">${LABELS[i.categoria]}</span>
-        <div class="ic-body">
-          <div class="ic-nome">${i.nome}</div>
-          ${(i.texto||i.descricao)?`<div class="ic-prev">${(i.texto||i.descricao).slice(0,90)}…</div>`:""}
-          ${i.sigla?`<span class="ic-sigla">${i.sigla}</span>`:""}
-          ${(i.temas||[]).length?`<div class="ic-tags">${i.temas.slice(0,3).map(t=>`<span class="ic-tag">${t}</span>`).join("")}</div>`:""}
-        </div>
-      </div>
-    </div>`).join("");
+  if(!itens.length){el.innerHTML='<div style="text-align:center;padding:30px 12px;color:var(--text-faint)">📭<br><span style="font-size:12px">Nenhum resultado</span></div>';return;}
+  let html=itens.map(i=>`<div class="ic${itemAtivo?.id===i.id?" sel":""}" onclick="selecionar('${i.id}')"><div class="ic-top"><span class="badge" style="background:${CORES[i.categoria]}">${LABELS[i.categoria]}</span><div class="ic-body"><div class="ic-nome">${i.nome}</div>${(i.texto||i.descricao)?`<div class="ic-prev">${(i.texto||i.descricao).slice(0,85)}…</div>`:""}${i.sigla?`<span class="ic-sigla">${i.sigla}</span>`:""}${(i.temas||[]).length?`<div class="ic-tags">${i.temas.slice(0,3).map(t=>`<span class="ic-tag">${t}</span>`).join("")}</div>`:""}</div></div></div>`).join("");
   if(resultados.length>10)html+=`<button id="ver-mais-btn" onclick="toggleVerMais()">${mostrarTodos?"▲ Mostrar menos":"▼ Ver mais "+(resultados.length-10)}</button>`;
   el.innerHTML=html;
 }
 function toggleVerMais(){mostrarTodos=!mostrarTodos;renderLista(mostrarTodos?resultados:resultados.slice(0,10));}
 
-// ===================================================
-// DETALHE
-// ===================================================
 function selecionar(id){
-  itemAtivo=TODOS.find(i=>i.id===id);aba="info";
+  itemAtivo=TODOS.find(i=>i.id===id);
   document.querySelectorAll(".ic").forEach(c=>c.classList.remove("sel"));
   document.querySelector(`.ic[onclick="selecionar('${id}')"]`)?.classList.add("sel");
-  renderDetalhe();
-}
-function renderDetalhe(){
   const i=itemAtivo;if(!i)return;
-  document.getElementById("painel").innerHTML=`
-    <div id="det-wrap">
-      <div class="det-hdr">
-        <div class="det-badges">
-          <span class="det-badge" style="background:${CORES[i.categoria]}">${LABELS[i.categoria]}</span>
-          ${i.tribunal?`<span class="det-tribunal">${i.tribunal}</span>`:""}
-        </div>
-        <div class="det-titulo">${i.nome}</div>
-        ${i.sigla?`<div class="det-sigla">${i.sigla}${i.numero?" · Lei n."+i.numero:""}</div>`:""}
-      </div>
-      <div class="abas">
-        <button class="aba on" data-aba="info" onclick="setAba('info',this)">📋 Informacoes</button>
-        <button class="aba" data-aba="ia" onclick="setAba('ia',this)">🤖 Analise IA</button>
-        ${i.url?`<button class="aba" data-aba="fonte" onclick="setAba('fonte',this)">🔗 Texto Oficial</button>`:""}
-      </div>
-      <div id="aba-body"></div>
-    </div>`;
-  renderAba();
+  const prompt=encodeURIComponent(i.categoria==="norma"?`Explique a ${i.nome} (${i.sigla||""}) de forma didática: objetivo, principais pontos, aplicação prática e jurisprudência importante do STF/STJ.`:i.categoria==="repercussao"?`Explique o Tema ${i.numero} de Repercussão Geral do STF: "${i.descricao}". Qual a tese fixada, impacto prático e casos mais relevantes?`:`Explique ${i.nome}: "${i.texto||i.descricao}". Qual o fundamento, aplicação prática e casos onde é mais relevante?`);
+  const claudeUrl=`https://claude.ai/new?q=${prompt}`;
+  const tags=i.temas||i.keywords||[];const normasRel=i.normasRelacionadas||[];
+  let html=`<div id="det-wrap"><div class="det-hdr"><div class="det-badges"><span class="det-badge" style="background:${CORES[i.categoria]}">${LABELS[i.categoria]}</span>${i.tribunal?`<span class="det-tribunal">${i.tribunal}</span>`:""}</div><div class="det-titulo">${i.nome}</div>${i.sigla?`<div class="det-sigla">${i.sigla}${i.numero?" · Lei nº "+i.numero:""}</div>`:""}</div>`;
+  if(i.texto||i.descricao)html+=`<div class="bloco"><div class="bloco-lbl">Enunciado</div><div class="bloco-txt">"${i.texto||i.descricao}"</div></div>`;
+  if(i.resultado)html+=`<div class="tese-bloco"><div class="bloco-lbl">✓ Tese Fixada pelo STF</div><p>${i.resultado}</p></div>`;
+  if(i.analise)html+=`<div class="analise-bloco"><div class="bloco-lbl">📖 Análise e Contexto</div><div class="analise-txt">${i.analise}</div></div>`;
+  if(normasRel.length)html+=`<div class="bloco"><div class="bloco-lbl">Normas Relacionadas</div><div class="normas-tags">${normasRel.map(n=>`<span class="ntag" onclick="buscarSigla('${n}')">${n}</span>`).join("")}</div></div>`;
+  if(tags.length)html+=`<div class="bloco"><div class="bloco-lbl">Temas</div><div class="temas-tags">${tags.map(t=>`<span class="ttag" onclick="buscarTema('${t}')">${t}</span>`).join("")}</div></div>`;
+  html+=`<div class="btns-row">${i.url?`<a href="${i.url}" target="_blank"><button class="btn-p">🔗 Abrir Texto Oficial →</button></a>`:""}<a href="${claudeUrl}" target="_blank"><button class="btn-o">✨ Aprofundar no Claude.ai →</button></a></div></div>`;
+  document.getElementById("painel").innerHTML=html;
 }
-function setAba(a,btn){aba=a;document.querySelectorAll(".aba").forEach(b=>b.classList.remove("on"));btn.classList.add("on");renderAba();}
-function renderAba(){
-  const i=itemAtivo,el=document.getElementById("aba-body");if(!el)return;
-  if(aba==="info"){
-    let h="";
-    if(i.texto||i.descricao)h+=`<div class="bloco"><div class="bloco-lbl">Enunciado</div><div class="bloco-txt">"${i.texto||i.descricao}"</div></div>`;
-    if(i.resultado)h+=`<div class="tese-bloco"><div class="bloco-lbl">✓ Tese Fixada pelo STF</div><p>${i.resultado}</p></div>`;
-    if((i.normasRelacionadas||[]).length)h+=`<div class="bloco"><div class="bloco-lbl">Normas Relacionadas</div><div class="normas-tags">${i.normasRelacionadas.map(n=>`<span class="ntag" onclick="buscarSigla('${n}')">${n}</span>`).join("")}</div></div>`;
-    const tags=i.temas||i.keywords||[];
-    if(tags.length)h+=`<div class="bloco"><div class="bloco-lbl">Temas</div><div class="temas-tags">${tags.map(t=>`<span class="ttag" onclick="buscarTema('${t}')">${t}</span>`).join("")}</div></div>`;
-    h+=`<button class="btn-p" onclick="setAba('ia',document.querySelector('.aba[data-aba=ia]'))">🤖 Gerar Analise Juridica</button>`;
-    el.innerHTML=h;
-  }else if(aba==="ia"){
-    if(cache[i.id])el.innerHTML=`<div id="ia-res"><div id="ia-res-hdr"><span>🤖</span> Analise Juridica com IA <button class="btn-s" style="margin-left:auto" onclick="analisarIA(true)">↺ Atualizar</button></div><div id="ia-content">${cache[i.id]}</div></div>`;
-    else el.innerHTML=`<div id="ia-vazio"><button class="btn-p" style="font-size:15px;padding:12px 28px" onclick="analisarIA()">🤖 Iniciar Analise com IA</button><p style="margin-top:10px;font-size:11px;color:var(--text-faint)">Analisa jurisprudencia, teses e aplicacoes praticas</p></div>`;
-  }else if(aba==="fonte"&&i.url){
-    el.innerHTML=`<div class="fonte-bloco"><div class="bloco-lbl">🔗 Texto Oficial</div><div class="fonte-url">${i.url}</div><a href="${i.url}" target="_blank"><button class="btn-p">Abrir Texto Completo →</button></a><div class="fonte-obs">Texto integra e oficial. Para sumulas e temas, o link abre diretamente no portal do STF ou STJ.</div></div>`;
-  }
+function buscarSigla(s){document.getElementById("srch-input").value=s;buscar(s);const f=TODOS.find(i=>i.sigla===s);if(f)selecionar(f.id);}
+function buscarTema(t){document.getElementById("srch-input").value=t;buscar(t);}
+
+function renderVersiculo(){
+  const versiculos=[
+    {texto:"Porque d'Ele, por Ele e para Ele são todas as coisas. A Ele, pois, a glória eternamente.",ref:"Romanos 11:36"},
+    {texto:"O Senhor é meu pastor e nada me faltará.",ref:"Salmos 23:1"},
+    {texto:"Tudo posso naquele que me fortalece.",ref:"Filipenses 4:13"},
+    {texto:"Porque sou eu que conheço os planos que tenho para vocês, diz o Senhor, planos de fazê-los prosperar e não de causar dano, planos de dar a vocês esperança e um futuro.",ref:"Jeremias 29:11"},
+    {texto:"Confie no Senhor de todo o seu coração e não se apoie em seu próprio entendimento; reconheça o Senhor em todos os seus caminhos, e Ele endireitará as suas veredas.",ref:"Provérbios 3:5-6"},
+    {texto:"O início da sabedoria é o temor do Senhor; bom entendimento têm todos os que praticam os seus mandamentos.",ref:"Salmos 111:10"},
+    {texto:"Sede fortes e corajosos. Não temais nem vos assusteis com eles, pois o Senhor, o teu Deus, vai contigo; nunca te deixará nem te abandonará.",ref:"Deuteronômio 31:6"},
+    {texto:"Porque Deus tanto amou o mundo que deu o seu Filho Unigênito, para que todo o que nele crer não pereça, mas tenha a vida eterna.",ref:"João 3:16"},
+    {texto:"Mas os que esperam no Senhor renovarão as suas forças. Voarão alto como águias; correrão e não ficarão exaustos, andarão e não se cansarão.",ref:"Isaías 40:31"},
+    {texto:"Buscai primeiro o reino de Deus e a sua justiça, e todas essas coisas vos serão acrescentadas.",ref:"Mateus 6:33"},
+    {texto:"Não andeis ansiosos por coisa alguma; antes em tudo, pela oração e súplica com ação de graças, apresentai os vossos pedidos a Deus.",ref:"Filipenses 4:6"},
+    {texto:"O Senhor é a minha luz e a minha salvação; a quem temerei?",ref:"Salmos 27:1"},
+    {texto:"Sede justos, porque Eu, o Senhor, vosso Deus, sou justo.",ref:"Levítico 19:2"},
+    {texto:"Aprende a fazer o bem; procura a justiça, repreende o opressor, faz justiça ao órfão, defende a causa da viúva.",ref:"Isaías 1:17"},
+  ];
+  const idx=new Date().getDate()%versiculos.length;
+  const v=versiculos[idx];
+  const tel=document.getElementById("versiculo-texto");
+  const rel=document.getElementById("versiculo-ref");
+  if(tel)tel.textContent=`"${v.texto}"`;
+  if(rel)rel.textContent=`— ${v.ref}`;
 }
 
-// ===================================================
-// ANALISE IA
-// ===================================================
-function abrirModal(){document.getElementById("modal-overlay").classList.add("open");document.getElementById("modal-input").value="";setTimeout(()=>document.getElementById("modal-input").focus(),100);}
-function fecharModal(){document.getElementById("modal-overlay").classList.remove("open");}
-function salvarChave(){
-  const k=document.getElementById("modal-input").value.trim();
-  if(!k||!k.startsWith("sk-")){alert("Chave invalida. Deve comecar com sk-ant-...");return;}
-  apiKey=k;localStorage.setItem("lex_key",k);fecharModal();
-  if(pendingIA){pendingIA=false;analisarIA();}
-}
-async function analisarIA(forcar=false){
-  const i=itemAtivo;if(!i)return;
-  if(!apiKey){pendingIA=true;abrirModal();return;}
-  if(cache[i.id]&&!forcar)return;
-  document.getElementById("aba-body").innerHTML=`<div id="ia-loading"><span class="spin-icon">⚙️</span><p>Analisando ${i.sigla||i.nome}…</p></div>`;
-  const prompt=
-    i.categoria==="norma"?`Analise a ${i.nome} (${i.sigla||""}) no Direito Brasileiro. Estruture em:\n## 1. Objetivo e Campo de Aplicacao\n## 2. Principais Institutos Juridicos\n## 3. Sumulas e Jurisprudencia (STF/STJ)\n## 4. Aplicacao Pratica\n## 5. Atualizacoes Relevantes`:
-    i.categoria==="repercussao"?`Analise o Tema ${i.numero} de Repercussao Geral do STF: "${i.descricao}". Tese: ${i.resultado||"em julgamento"}. Estruture em:\n## 1. Contexto e Origem\n## 2. Tese Fixada\n## 3. Normas e Principios Afetados\n## 4. Impacto Pratico\n## 5. Casos Conexos`:
-    `Analise ${i.nome}: "${i.texto||i.descricao}". Estruture em:\n## 1. Origem e Fundamento\n## 2. Aplicacao Pratica\n## 3. Excecoes e Controversias\n## 4. Relacao com Outras Normas\n## 5. Casos Representativos`;
-  try{
-    const r=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",
-      headers:{"Content-Type":"application/json","x-api-key":apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1200,
-        system:"Voce e um jurista brasileiro senior. Responda em portugues, seja preciso e tecnico. Use ## para secoes e **negrito** para termos juridicos.",
-        messages:[{role:"user",content:prompt}]})
-    });
-    const d=await r.json();
-    if(d.error){
-      if(d.error.type==="authentication_error"){apiKey="";localStorage.removeItem("lex_key");pendingIA=true;abrirModal();return;}
-      throw new Error(d.error.message);
-    }
-    cache[i.id]=renderMD((d.content||[]).map(b=>b.text||"").join(""));
-    renderAba();
-  }catch(e){
-    document.getElementById("aba-body").innerHTML=`<div style="text-align:center;padding:36px;color:#aa5a5a">⚠ ${e.message}</div>`;
-  }
-}
-function renderMD(t){
-  return t.split("\n").map(l=>{
-    if(l.startsWith("## "))return`<h2>${l.slice(3)}</h2>`;
-    if(l.startsWith("### "))return`<h3>${l.slice(4)}</h3>`;
-    l=l.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
-    if(l.startsWith("- ")||l.startsWith("• "))return`<li>${l.slice(2)}</li>`;
-    if(!l.trim())return"<br>";
-    return`<p>${l}</p>`;
-  }).join("");
-}
-function buscarSigla(s){document.getElementById("srch").querySelector("input").value=s;buscar(s);const f=TODOS.find(i=>i.sigla===s);if(f)selecionar(f.id);}
-function buscarTema(t){document.getElementById("srch").querySelector("input").value=t;buscar(t);}
 function renderWelcome(){
   document.getElementById("painel").innerHTML=`
     <div id="welcome">
-      <div class="w-icon">⚖️</div>
-      <div class="w-title">Sistema Juridico Brasileiro</div>
-      <div class="w-sub">Normas, sumulas e temas de repercussao geral reunidos em um so lugar. Clique em qualquer item para ver enunciado, analise juridica e link para o texto oficial.</div>
+      <div class="w-icon">
+        <svg width="52" height="48" viewBox="0 0 60 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="28.5" y="4" width="3" height="44" rx="1.5" fill="#3a62cc"/>
+          <rect x="10" y="15" width="40" height="2.5" rx="1.25" fill="#c8d8ff"/>
+          <circle cx="30" cy="4" r="3.5" fill="#c8a020"/>
+          <line x1="15" y1="17.5" x2="10" y2="28" stroke="#6878a0" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="15" y1="17.5" x2="20" y2="28" stroke="#6878a0" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M8 28 Q15 33 22 28" stroke="#c8d8ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <line x1="45" y1="17.5" x2="40" y2="28" stroke="#6878a0" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="45" y1="17.5" x2="50" y2="28" stroke="#6878a0" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M38 28 Q45 33 52 28" stroke="#c8d8ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <rect x="22" y="47" width="16" height="2.5" rx="1.25" fill="#3a62cc"/>
+          <rect x="18" y="49.5" width="24" height="3" rx="1.5" fill="#2a4fab"/>
+        </svg>
+      </div>
+      <div class="w-title">Sistema Jurídico Brasileiro</div>
+      <div class="w-sub">Normas, súmulas e temas de repercussão geral reunidos em um só lugar. Clique em qualquer item para ver análise, enunciado e links oficiais.</div>
       <div class="stats">
         <div class="stat"><div class="stat-ico">📜</div><div class="stat-n">${NORMAS.length}</div><div class="stat-l">Normas</div></div>
-        <div class="stat"><div class="stat-ico">⚖️</div><div class="stat-n">${SUMULAS.length}</div><div class="stat-l">Sumulas</div></div>
+        <div class="stat"><div class="stat-ico">⚖️</div><div class="stat-n">${SUMULAS.length}</div><div class="stat-l">Súmulas</div></div>
         <div class="stat"><div class="stat-ico">🔒</div><div class="stat-n">${SUMULAS_VIN.length}</div><div class="stat-l">Vinculantes</div></div>
         <div class="stat"><div class="stat-ico">🏛️</div><div class="stat-n">${TEMAS.length}</div><div class="stat-l">Rep. Geral</div></div>
       </div>
-      <div class="w-hint">💡 <strong>Dica:</strong> Use a busca para encontrar rapidamente qualquer norma, numero de sumula ou tema. Clique em 🔔 Novidades para ver as ultimas atualizacoes.</div>
+      <div class="w-hint">💡 <strong>Novo:</strong> Clique em <span style="color:var(--gold)">✦ Simplificando o Direito</span> para entender os termos jurídicos sem complicação. Veja também <span style="color:rgba(200,160,32,.8)">💙 Sobre o Site</span> para conhecer o projeto.</div>
+      <div id="versiculo-wrap">
+        <div class="v-label">✝ Versículo do Dia</div>
+        <div id="versiculo-texto"></div>
+        <div id="versiculo-ref"></div>
+        <div id="versiculo-bencao">Deus abençoe sua leitura e seu dia! 🙏</div>
+      </div>
+      <div id="noticias-wrap">
+        <h3>📰 Notícias Jurídicas do Dia <span>atualizado automaticamente</span></h3>
+        <div id="noticias-lista"></div>
+      </div>
     </div>`;
   document.getElementById("cnt-badge").textContent=TODOS.length+" itens";
+  renderVersiculo();
+  carregarNoticias();
 }
-document.getElementById("modal-overlay").addEventListener("click",e=>{if(e.target.id==="modal-overlay")fecharModal();});
 </script>
 </body>
 </html>
