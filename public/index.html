@@ -60,7 +60,7 @@ a{color:var(--royal-lt);text-decoration:none;}
 @keyframes slideIn{from{transform:translateX(-100%);}to{transform:translateX(0);}}
 
 /* NAVEGAÇÃO PRINCIPAL */
-#filtros{padding:5px 14px;background:rgba(11,14,24,.8);border-bottom:1px solid rgba(65,105,200,.12);display:flex;align-items:center;gap:4px;flex-wrap:wrap;overflow-x:auto;}
+#filtros{padding:5px 14px;background:rgba(11,14,24,.97);border-bottom:1px solid rgba(65,105,200,.12);display:flex;align-items:center;gap:4px;flex-wrap:wrap;overflow-x:auto;position:sticky;top:56px;z-index:99;backdrop-filter:blur(10px);}
 .flabel{display:none;}
 .fb{background:transparent;border:1px solid rgba(65,105,200,.2);color:var(--text-dim);padding:5px 13px;border-radius:20px;cursor:pointer;font-size:12.5px;font-family:'Lato',sans-serif;font-weight:600;transition:all .18s;white-space:nowrap;letter-spacing:.2px;}
 .fb:hover,.fb.on{background:var(--royal-dim);border-color:var(--border2);color:var(--accent);}
@@ -480,6 +480,8 @@ function irHome(){
   document.getElementById("srch-input").value="";
   document.getElementById("lista-srch-input").value="";
   secaoAtiva="todos";busca="";listaBusca="";
+  // Abre todas as categorias expandidas na tela inicial
+  CATS.forEach(c=>catAberta[c.id]=true);
   setNav(document.querySelector("#filtros .fb"));
   renderLista();renderWelcome();
 }
@@ -646,6 +648,8 @@ window.onload=async()=>{
   // Restaurar tamanho de fonte salvo
   const fonteSalva=localStorage.getItem("lex_fonte");
   if(fonteSalva){fonteBase=parseInt(fonteSalva);document.documentElement.style.fontSize=fonteBase+"px";}
+  // Abre todas as categorias expandidas na tela inicial
+  CATS.forEach(c=>catAberta[c.id]=true);
   renderLista();renderWelcome();
   await Promise.all([carregarNovidades(),carregarColabs(),registrarAcesso()]);
 };
@@ -756,6 +760,8 @@ function setSecao(id,btn){
   busca="";listaBusca="";
   document.getElementById("lista-srch-input").value="";
   itemAtivo=null;
+  // Abre só a categoria da seção clicada, fecha as demais
+  CATS.forEach(c=>catAberta[c.id]=(c.id===id));
   renderLista();
   document.getElementById("painel").innerHTML=`<div style="padding:30px 24px;color:var(--text-faint);font-size:13px;font-family:'Playfair Display',serif">Selecione um item no menu lateral para ver os detalhes.</div>`;
 }
