@@ -529,9 +529,9 @@ function irHome(){
 }
 
 // ACESSIBILIDADE — A+ / A-
-let fonteBase=14;
+let fonteBase=16;
 function ajustarFonte(delta){
-  fonteBase=Math.max(11,Math.min(20,fonteBase+delta));
+  fonteBase=Math.max(13,Math.min(22,fonteBase+delta));
   document.documentElement.style.fontSize=fonteBase+"px";
   localStorage.setItem("lex_fonte",fonteBase);
 }
@@ -778,7 +778,8 @@ const catAberta={};
 
 window.onload=async()=>{
   const fonteSalva=localStorage.getItem("lex_fonte");
-  if(fonteSalva){fonteBase=parseInt(fonteSalva);document.documentElement.style.fontSize=fonteBase+"px";}
+  if(fonteSalva&&parseInt(fonteSalva)>=13){fonteBase=parseInt(fonteSalva);document.documentElement.style.fontSize=fonteBase+"px";}
+  else{localStorage.removeItem("lex_fonte");}
   renderWelcome();
   await Promise.all([carregarNovidades(),carregarColabs(),registrarAcesso()]);
 };
