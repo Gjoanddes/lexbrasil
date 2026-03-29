@@ -913,64 +913,67 @@ function escapeHTML(str) {
 
 // ── BUSCA GLOBAL ─────────────────────────────────────────
 function buscarGlobal(q){
-  busca=q.toLowerCase().trim();
-  if(!busca){renderWelcome();document.getElementById("cnt-badge").textContent=TODOS.length+" itens";return;}
-  
-  const palavras = busca.split(/\s+/);
-  const safeQ = escapeHTML(q);
+  try {
+    let busca=q.toLowerCase().trim();
+    if(!busca){renderWelcome();document.getElementById("cnt-badge").textContent=TODOS.length+" itens";return;}
+    
+    const palavras = busca.split(/\s+/);
+    const safeQ = escapeHTML(q);
 
-  const resNormas=TODOS.filter(i=>{
-    const campos=[i.nome||"",i.sigla||"",i.texto||"",i.descricao||"",i.analise||"",
-      i.numero?String(i.numero):"",...(i.keywords||[]),...(i.temas||[]),...(i.normasRelacionadas||[])].join(" ").toLowerCase();
-    return palavras.every(p=>campos.includes(p));
-  });
-  const resTermos=TERMOS.filter(t=>(t.nome+t.def+t.ex+t.simbolo).toLowerCase().includes(busca));
-  
-  let resModelos=[];
-  try{
+    const resNormas=TODOS.filter(i=>{
+      const campos=[i.nome||"",i.sigla||"",i.texto||"",i.descricao||"",i.analise||"",
+        i.numero?String(i.numero):"",...(i.keywords||[]),...(i.temas||[]),...(i.normasRelacionadas||[])].join(" ").toLowerCase();
+      return palavras.every(p=>campos.includes(p));
+    });
+    const resTermos=TERMOS.filter(t=>(t.nome+t.def+t.ex+t.simbolo).toLowerCase().includes(busca));
+    
+    let resModelos=[];
     if(typeof MODELOS !== "undefined"){
       resModelos=MODELOS.filter(m=>{
         const camposMod = (m.nome||"") + " " + (m.descricao||"") + " " + (m.cat||"") + " " + (m.tags?m.tags.join(" "):"");
         return palavras.every(p=>camposMod.toLowerCase().includes(p));
       });
     }
-  }catch(e){}
 
-  document.getElementById("cnt-badge").textContent=(resNormas.length+resTermos.length+resModelos.length)+" resultado(s)";
-  // Mostra resultados direto no painel
-  let html=`<div id="det-wrap"><div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--accent);margin-bottom:16px">🔍 Resultados para "${safeQ}"</div>`;
-  if(!resNormas.length && !resTermos.length && !resModelos.length){
-    html+=`<div style="text-align:center;padding:40px;color:var(--text-faint)">Nenhum resultado encontrado.</div>`;
-  }
-  if(resNormas.length){
-    html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Normas e jurisprudência (${resNormas.length})</div>`;
-    html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:20px">`;
-    html+=resNormas.map(i=>`<div onclick="selecionarItem('${i.id}','${i.categoria}')" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
-      ${i.sigla?`<div style="font-size:9px;color:var(--green);font-family:'JetBrains Mono',monospace">${i.sigla}</div>`:""}
-      <div style="font-size:12px;color:var(--text)">${i.nome}</div>
-    </div>`).join("");
+    document.getElementById("cnt-badge").textContent=(resNormas.length+resTermos.length+resModelos.length)+" resultado(s)";
+    // Mostra resultados direto no painel
+    let html=`<div id="det-wrap"><div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--accent);margin-bottom:16px">🔍 Resultados para "${safeQ}"</div>`;
+    if(!resNormas.length && !resTermos.length && !resModelos.length){
+      html+=`<div style="text-align:center;padding:40px;color:var(--text-faint)">Nenhum resultado encontrado.</div>`;
+    }
+    if(resNormas.length){
+      html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Normas e jurisprudência (${resNormas.length})</div>`;
+      html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:20px">`;
+      html+=resNormas.map(i=>`<div onclick="selecionarItem('${i.id}','${i.categoria}')" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+        ${i.sigla?`<div style="font-size:9px;color:var(--green);font-family:'JetBrains Mono',monospace">${i.sigla}</div>`:""}
+        <div style="font-size:12px;color:var(--text)">${i.nome}</div>
+      </div>`).join("");
+      html+=`</div>`;
+    }
+    if(resModelos.length){
+      html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Modelos Jurídicos (${resModelos.length})</div>`;
+      html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:20px">`;
+      html+=resModelos.map(m=>`<div onclick="mostrarModelos();setTimeout(()=>toggleModelo('mod_${m.id}'),150)" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='rgba(42,79,171,.4)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:9px;color:var(--royal-lt);font-family:'JetBrains Mono',monospace;margin-bottom:2px">📄 ${m.cat}</div>
+        <div style="font-size:12px;color:var(--text)">${m.nome}</div>
+      </div>`).join("");
+      html+=`</div>`;
+    }
+    if(resTermos.length){
+      html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Termos jurídicos (${resTermos.length})</div>`;
+      html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px">`;
+      html+=resTermos.map(t=>`<div onclick="mostrarSimplificando('${t.nome}')" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='rgba(200,160,32,.4)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:11px;color:var(--gold)">${t.simbolo} ${t.nome}</div>
+        <div style="font-size:10px;color:var(--text-faint);margin-top:3px">${t.def.slice(0,60)}…</div>
+      </div>`).join("");
+      html+=`</div>`;
+    }
     html+=`</div>`;
+    document.getElementById("painel").innerHTML=html;
+  } catch (err) {
+    alert("ERRO NA BUSCA: " + err.message);
+    console.error(err);
   }
-  if(resModelos.length){
-    html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Modelos Jurídicos (${resModelos.length})</div>`;
-    html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:20px">`;
-    html+=resModelos.map(m=>`<div onclick="mostrarModelos();setTimeout(()=>toggleModelo('mod_${m.id}'),150)" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='rgba(42,79,171,.4)'" onmouseout="this.style.borderColor='var(--border)'">
-      <div style="font-size:9px;color:var(--royal-lt);font-family:'JetBrains Mono',monospace;margin-bottom:2px">📄 ${m.cat}</div>
-      <div style="font-size:12px;color:var(--text)">${m.nome}</div>
-    </div>`).join("");
-    html+=`</div>`;
-  }
-  if(resTermos.length){
-    html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Termos jurídicos (${resTermos.length})</div>`;
-    html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px">`;
-    html+=resTermos.map(t=>`<div onclick="mostrarSimplificando('${t.nome}')" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='rgba(200,160,32,.4)'" onmouseout="this.style.borderColor='var(--border)'">
-      <div style="font-size:11px;color:var(--gold)">${t.simbolo} ${t.nome}</div>
-      <div style="font-size:10px;color:var(--text-faint);margin-top:3px">${t.def.slice(0,60)}…</div>
-    </div>`).join("");
-    html+=`</div>`;
-  }
-  html+=`</div>`;
-  document.getElementById("painel").innerHTML=html;
 }
 
 // Manter compatibilidade
