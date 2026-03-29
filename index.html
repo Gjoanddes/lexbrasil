@@ -851,25 +851,50 @@ function renderVersiculo(){
 // ── BUSCA GLOBAL ─────────────────────────────────────────
 function buscarGlobal(q){
   busca=q.toLowerCase().trim();
-  if(!busca){renderWelcome();document.getElementById("cnt-badge").textContent=TODOS.length+" itens";return;}
+  if(!busca){irHome();return;}
+  
+  const palavras = busca.split(/\s+/);
+  
   const resNormas=TODOS.filter(i=>{
     const campos=[i.nome||"",i.sigla||"",i.texto||"",i.descricao||"",i.analise||"",
       i.numero?String(i.numero):"",...(i.keywords||[]),...(i.temas||[]),...(i.normasRelacionadas||[])].join(" ").toLowerCase();
-    return campos.includes(busca);
+    return palavras.every(p => campos.includes(p));
   });
-  const resTermos=TERMOS.filter(t=>(t.nome+t.def+t.ex+t.simbolo).toLowerCase().includes(busca));
-  document.getElementById("cnt-badge").textContent=(resNormas.length+resTermos.length)+" resultado(s)";
-  // Mostra resultados direto no painel
-  let html=`<div id="det-wrap"><div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--accent);margin-bottom:16px">🔍 Resultados para "${q}"</div>`;
-  if(!resNormas.length&&!resTermos.length){
+  
+  const resTermos=TERMOS.filter(t=>{
+    const campos=[t.nome||"",t.def||"",t.ex||"",t.simbolo||""].join(" ").toLowerCase();
+    return palavras.every(p => campos.includes(p));
+  });
+
+  const resModelos=MODELOS.filter(m=>{
+    const campos=[m.nome||"",m.cat||"",m.quando||"",m.icone||""].join(" ").toLowerCase();
+    return palavras.every(p => campos.includes(p));
+  });
+
+  document.getElementById("cnt-badge").textContent=(resNormas.length+resTermos.length+resModelos.length)+" resultado(s)";
+  
+  const qSeguro = q.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  let html=`<div id="det-wrap"><div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--accent);margin-bottom:16px">🔍 Resultados para "${qSeguro}"</div>`;
+  
+  if(!resNormas.length&&!resTermos.length&&!resModelos.length){
     html+=`<div style="text-align:center;padding:40px;color:var(--text-faint)">Nenhum resultado encontrado.</div>`;
   }
+  
   if(resNormas.length){
     html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Normas e jurisprudência (${resNormas.length})</div>`;
     html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:20px">`;
     html+=resNormas.map(i=>`<div onclick="selecionarItem('${i.id}','${i.categoria}')" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
       ${i.sigla?`<div style="font-size:9px;color:var(--green);font-family:'JetBrains Mono',monospace">${i.sigla}</div>`:""}
       <div style="font-size:12px;color:var(--text)">${i.nome}</div>
+    </div>`).join("");
+    html+=`</div>`;
+  }
+  if(resModelos.length){
+    html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Modelos Jurídicos (${resModelos.length})</div>`;
+    html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:20px">`;
+    html+=resModelos.map(m=>`<div onclick="mostrarModelos();setNav(document.querySelectorAll('#filtros .fb')[6])" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold)">${m.icone} ${m.nome}</div>
+      <div style="font-size:10px;color:var(--text-faint);margin-top:3px">${m.cat}</div>
     </div>`).join("");
     html+=`</div>`;
   }
