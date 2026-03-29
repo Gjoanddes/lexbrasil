@@ -490,8 +490,9 @@ a{color:var(--royal-lt);text-decoration:none;}
     <div><div id="logo-name">LEXBRASIL</div><div id="logo-sub">Sistema Jurídico Integrado</div></div>
   </div>
   <button id="btn-menu-mobile" onclick="abrirNavMobile()">☰</button>
-  <div id="srch">
-    <input type="text" id="srch-input" placeholder="🔍 Buscar... ex: dolo, furto, CF/88" oninput="buscarGlobal(this.value)">
+  <div id="srch" style="display:flex;align-items:center;padding-right:5px">
+    <input type="text" id="srch-input" placeholder="🔍 Buscar... ex: dolo, furto, CF/88" oninput="buscarGlobal(this.value)" onkeydown="if(event.key==='Enter') buscarGlobal(this.value)" style="flex:1;background:transparent;border:none;outline:none;color:var(--text);padding-left:10px">
+    <button onclick="buscarGlobal(document.getElementById('srch-input').value)" title="Pesquisar" style="background:transparent;border:none;cursor:pointer;color:var(--text-dim);font-size:16px;padding:4px">🔍</button>
   </div>
   <div id="hdr-right">
     <div id="contador"><span class="green-dot"></span><span id="cnt-num">...</span><span>acessos</span></div>
@@ -668,7 +669,7 @@ const SUMULAS=[
   {id:"s611",area:"Direito Penal",numero:611,nome:"Súmula 611 STF",texto:"Transitada em julgado a sentença condenatória, compete ao juízo das execuções a aplicação de lei mais benigna.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1645",tribunal:"STF",analise:"Após o trânsito em julgado, se nova lei beneficiar o condenado, cabe ao Juiz da Vara de Execuções Penais aplicá-la. A lei penal mais benéfica retroage sempre.",temas:["Execução Penal","Lei mais benigna","LEP"]},
   {id:"s680",area:"Direito Previdenciário",numero:680,nome:"Súmula 680 STF",texto:"O direito ao auxílio-reclusão é assegurado ao preso em regime fechado.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1706",tribunal:"STF",analise:"O auxílio-reclusão é pago pelo INSS aos dependentes do segurado preso em regime fechado com baixa renda. Proteção previdenciária à família do preso.",temas:["Previdência","Auxílio-reclusão"]},
   {id:"s718",area:"Direito Penal",numero:718,nome:"Súmula 718 STF",texto:"A opinião do julgador sobre a gravidade em abstrato do crime não constitui motivação idônea para a imposição de regime mais severo.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1743",tribunal:"STF",analise:"O juiz não pode impor regime mais severo apenas por considerar o crime grave em abstrato. Para regime mais gravoso, é preciso fundamentação concreta baseada no caso específico.",temas:["Regime de Pena","Dosimetria","Motivação"]},
-  {id:"s309",area:"Direito de Família",numero:309,nome:"Súmula 309 STJ",texto:"O débito alimentar que autoriza a prisão civil compreende as três prestações anteriores ao ajuizamento e as que vencerem no curso do processo.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",tribunal:"STJ",analise:"A prisão civil do devedor de alimentos só é cabível pela dívida recente (últimas 3 parcelas). Parcelas mais antigas devem ser cobradas por execução comum, sem possibilidade de prisão.",temas:["Alimentos","Prisão Civil","Família"]},,
+  {id:"s309",area:"Direito de Família",numero:309,nome:"Súmula 309 STJ",texto:"O débito alimentar que autoriza a prisão civil compreende as três prestações anteriores ao ajuizamento e as que vencerem no curso do processo.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",tribunal:"STJ",analise:"A prisão civil do devedor de alimentos só é cabível pela dívida recente (últimas 3 parcelas). Parcelas mais antigas devem ser cobradas por execução comum, sem possibilidade de prisão.",temas:["Alimentos","Prisão Civil","Família"]},
   {id:"s11stj",area:"Direito Administrativo",numero:11,nome:"Súmula 11 STJ",texto:"A presença de advogado é obrigatória nos processos administrativos disciplinares.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",tribunal:"STJ",analise:"Diferencia-se da SV 5 do STF: enquanto a SV 5 dispensa advogado no PAD, a Súmula 11 do STJ exige quando a penalidade puder ser demissão. O STJ e o STF divergem neste ponto específico.",temas:["PAD","Advogado","Processo Administrativo"]},
   {id:"s47stf",area:"Direito Administrativo",numero:47,nome:"Súmula 47 STF",texto:"Restrições a direitos de funcionário público fundadas em razões de segurança nacional são aplicáveis a servidor de empresa estatal.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=30&sumula=1564",tribunal:"STF",analise:"Servidores de empresas estatais (como Petrobras e Caixa) podem ter restrições de direitos por razões de segurança nacional, assim como servidores públicos diretos.",temas:["Empresa Estatal","Servidor","Segurança Nacional"]},
   {id:"s340stj",area:"Direito Previdenciário",numero:340,nome:"Súmula 340 STJ",texto:"A lei aplicável à concessão de pensão previdenciária por morte é aquela vigente na data do óbito do segurado.",url:"https://scon.stj.jus.br/SCON/sumstj/toc.jsp",tribunal:"STJ",analise:"O benefício de pensão por morte segue a lei vigente no momento do óbito do segurado, não a lei posterior. Garante segurança jurídica e impede que mudanças legislativas prejudiquem dependentes.",temas:["Previdência","Pensão por Morte","INSS"]},
@@ -689,7 +690,7 @@ const SUMULAS_VIN=[
   {id:"sv14",area:"Direito Penal",numero:14,nome:"Súmula Vinculante 14",texto:"É direito do defensor ter acesso amplo aos elementos de prova já documentados em procedimento investigatório.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1240",tribunal:"STF",analise:"O advogado tem direito de acessar os autos do inquérito mesmo em investigações em curso. A negativa viola a ampla defesa e pode anular o processo.",temas:["Defesa","Inquérito","Acesso aos Autos"]},
   {id:"sv25",area:"Direito Civil",numero:25,nome:"Súmula Vinculante 25",texto:"É ilícita a prisão civil de depositário infiel, qualquer que seja a modalidade do depósito.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1251",tribunal:"STF",analise:"Com o Pacto de San José da Costa Rica, o STF extinguiu a prisão do depositário infiel. Apenas a prisão por dívida alimentar permanece lícita.",temas:["Prisão Civil","Depositário Infiel"]},
   {id:"sv26",area:"Direito Penal",numero:26,nome:"Súmula Vinculante 26",texto:"Para progressão de regime em crime hediondo, o juízo da execução observará a inconstitucionalidade do art. 2º da Lei 8.072/90.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1252",tribunal:"STF",analise:"A vedação absoluta de progressão de regime para crimes hediondos é inconstitucional. Há progressão com prazos diferenciados: 40% para primários e 60% para reincidentes.",temas:["Progressão de Regime","Crime Hediondo","LEP"]},
-  {id:"sv56",area:"Direito Penal",numero:56,nome:"Súmula Vinculante 56",texto:"A falta de estabelecimento penal adequado não autoriza a manutenção do condenado em regime prisional mais gravoso.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1282",tribunal:"STF",analise:"Se o Estado não tem vaga no regime adequado, deve colocar o preso em regime menos grave ou conceder prisão domiciliar. O Estado não pode punir o preso pela própria omissão.",temas:["Estabelecimento Penal","Regime Prisional","LEP"]},,
+  {id:"sv56",area:"Direito Penal",numero:56,nome:"Súmula Vinculante 56",texto:"A falta de estabelecimento penal adequado não autoriza a manutenção do condenado em regime prisional mais gravoso.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1282",tribunal:"STF",analise:"Se o Estado não tem vaga no regime adequado, deve colocar o preso em regime menos grave ou conceder prisão domiciliar. O Estado não pode punir o preso pela própria omissão.",temas:["Estabelecimento Penal","Regime Prisional","LEP"]},
   {id:"sv1",area:"Direito Administrativo",numero:1,nome:"Súmula Vinculante 1",texto:"Ofende a garantia constitucional do ato jurídico perfeito a decisão que, sem ponderar as circunstâncias do caso concreto, desconsidera a validez e a eficácia de acordo constante de termo de adesão instituído pela Lei Complementar nº 110/2001.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1227",tribunal:"STF",analise:"Protege acordos firmados no âmbito do FGTS. Decisões judiciais não podem ignorar os termos de adesão sem analisar as circunstâncias concretas do caso, sob pena de violar o ato jurídico perfeito.",temas:["FGTS","Ato Jurídico Perfeito","Segurança Jurídica"]},
   {id:"sv10",area:"Direito Constitucional",numero:10,nome:"Súmula Vinculante 10",texto:"Viola a cláusula de reserva de plenário a decisão de órgão fracionário de tribunal que, embora não declare expressamente a inconstitucionalidade de lei, afasta sua incidência no todo ou em parte.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1236",tribunal:"STF",analise:"A cláusula de reserva de plenário exige maioria absoluta do tribunal pleno para afastar uma lei por inconstitucionalidade. Um órgão fracionário (câmara, turma) não pode fazer isso sozinho, mesmo sem usar a palavra 'inconstitucional'.",temas:["Reserva de Plenário","Inconstitucionalidade","Controle Difuso"]},
   {id:"sv16",area:"Direito Administrativo",numero:16,nome:"Súmula Vinculante 16",texto:"Os artigos 7º, IV, e 39, § 3º (redação da EC 19/98), da Constituição Federal, referem-se ao salário mínimo previsto em lei nacional, não fixado por lei estadual.",url:"https://portal.stf.jus.br/jurisprudencia/sumariosumulas.asp?base=99&sumula=1242",tribunal:"STF",analise:"O salário mínimo que serve de base para vencimentos de servidores e trabalhadores é o nacional, fixado em lei federal. Estados não podem fixar outro salário mínimo como parâmetro constitucional.",temas:["Salário Mínimo","Servidor Público","Federalismo"]},
@@ -707,7 +708,7 @@ const TEMAS=[
   {id:"rg339",area:"Direito Penal",numero:339,nome:"Tema 339 — Repercussão Geral",descricao:"Progressão de regime em crimes hediondos.",resultado:"Possível a progressão, cumpridos os requisitos legais.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000339&base=repercussao",tribunal:"STF",analise:"Confirmou a inconstitucionalidade da vedação absoluta de progressão para crimes hediondos. O condenado pode progredir cumprindo fração maior da pena: 40%/60% conforme Pacote Anticrime 2019.",normasRelacionadas:["LEP","CF/88"],temas:["Crimes Hediondos","Progressão de Regime"]},
   {id:"rg635",area:"Direito Penal",numero:635,nome:"Tema 635 — Repercussão Geral",descricao:"Porte de drogas para consumo próprio — criminalização.",resultado:"Descriminalização do porte de cannabis para uso próprio.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001142&base=repercussao",tribunal:"STF",analise:"O STF decidiu que portar cannabis para consumo próprio é descriminalizado — não é crime. O art. 28 da Lei de Drogas foi considerado inconstitucional nessa parte.",normasRelacionadas:["LD","CF/88"],temas:["Drogas","Cannabis","Descriminalização"]},
   {id:"rg760",area:"Direito à Saúde",numero:760,nome:"Tema 760 — Repercussão Geral",descricao:"Medicamentos de alto custo e obrigação dos entes federativos.",resultado:"Obrigatoriedade solidária de União, estados e municípios.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000760&base=repercussao",tribunal:"STF",analise:"União, estados e municípios são solidariamente responsáveis por fornecer medicamentos. Para medicamentos não incorporados ao SUS, exige-se registro na ANVISA e comprovação médica.",normasRelacionadas:["CF/88"],temas:["Saúde","Medicamento","SUS"]},
-  {id:"rg1068",area:"Direito Penal",numero:1068,nome:"Tema 1068 — Repercussão Geral",descricao:"Execução provisória da pena após condenação em segundo grau.",resultado:"Inconstitucional a execução antecipada antes do trânsito em julgado.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001068&base=repercussao",tribunal:"STF",analise:"A prisão só pode ser executada após o trânsito em julgado. A execução provisória viola a presunção de inocência da CF/88.",normasRelacionadas:["CF/88","CPP"],temas:["Execução Provisória","Presunção de Inocência"]},,
+  {id:"rg1068",area:"Direito Penal",numero:1068,nome:"Tema 1068 — Repercussão Geral",descricao:"Execução provisória da pena após condenação em segundo grau.",resultado:"Inconstitucional a execução antecipada antes do trânsito em julgado.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=001068&base=repercussao",tribunal:"STF",analise:"A prisão só pode ser executada após o trânsito em julgado. A execução provisória viola a presunção de inocência da CF/88.",normasRelacionadas:["CF/88","CPP"],temas:["Execução Provisória","Presunção de Inocência"]},
   {id:"rg21",area:"Direito Administrativo",numero:21,nome:"Tema 21 — Repercussão Geral",descricao:"Responsabilidade civil do Estado por atos de concessionárias de serviço público.",resultado:"Estado responde objetivamente pelos danos causados por concessionárias a usuários e terceiros.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000021&base=repercussao",tribunal:"STF",analise:"O STF firmou que o Estado responde objetivamente (independentemente de culpa) pelos danos que suas concessionárias causem, tanto a usuários do serviço quanto a terceiros não usuários. Aplica-se o art. 37, § 6º da CF/88.",normasRelacionadas:["CF/88"],temas:["Responsabilidade Civil","Estado","Concessão","Serviço Público"]},
   {id:"rg57",area:"Direito Tributário",numero:57,nome:"Tema 57 — Repercussão Geral",descricao:"Imunidade tributária recíproca — extensão às empresas públicas e sociedades de economia mista.",resultado:"Imunidade aplicável quando prestam serviço público essencial sem fins lucrativos.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000057&base=repercussao",tribunal:"STF",analise:"A imunidade tributária recíproca (art. 150, VI, 'a' CF/88) pode se estender a empresas públicas e sociedades de economia mista que prestem serviço público essencial e não distribuam lucros. Ex: ECT (Correios) e INFRAERO.",normasRelacionadas:["CF/88"],temas:["Imunidade Tributária","Empresa Pública","Correios","Tributo"]},
   {id:"rg119",area:"Direito Administrativo",numero:119,nome:"Tema 119 — Repercussão Geral",descricao:"Prazo prescricional das ações de ressarcimento ao erário por ato de improbidade.",resultado:"Imprescritível o ressarcimento ao erário decorrente de ato doloso de improbidade.",url:"https://portal.stf.jus.br/jurisprudencia/listarJurisprudenciaDetalhe.asp?s1=000119&base=repercussao",tribunal:"STF",analise:"O STF decidiu que as ações de ressarcimento ao erário decorrentes de atos dolosos de improbidade são imprescritíveis, com base no art. 37, § 5º da CF/88. Apenas atos culposos prescrevem.",normasRelacionadas:["CF/88","LIA"],temas:["Improbidade","Ressarcimento","Prescrição","Erário"]},
@@ -905,20 +906,40 @@ function renderVersiculo(){
   if(re)re.textContent=`— ${v.r}`;
 }
 
+// ── SANITIZAR XSS ────────────────────────────────────────
+function escapeHTML(str) {
+  return String(str).replace(/[&<>'"]/g, tag => ({'&': '&amp;','<': '&lt;','>': '&gt;',"'": '&#39;','"': '&quot;'}[tag]));
+}
+
 // ── BUSCA GLOBAL ─────────────────────────────────────────
 function buscarGlobal(q){
   busca=q.toLowerCase().trim();
   if(!busca){renderWelcome();document.getElementById("cnt-badge").textContent=TODOS.length+" itens";return;}
+  
+  const palavras = busca.split(/\s+/);
+  const safeQ = escapeHTML(q);
+
   const resNormas=TODOS.filter(i=>{
     const campos=[i.nome||"",i.sigla||"",i.texto||"",i.descricao||"",i.analise||"",
       i.numero?String(i.numero):"",...(i.keywords||[]),...(i.temas||[]),...(i.normasRelacionadas||[])].join(" ").toLowerCase();
-    return campos.includes(busca);
+    return palavras.every(p=>campos.includes(p));
   });
   const resTermos=TERMOS.filter(t=>(t.nome+t.def+t.ex+t.simbolo).toLowerCase().includes(busca));
-  document.getElementById("cnt-badge").textContent=(resNormas.length+resTermos.length)+" resultado(s)";
+  
+  let resModelos=[];
+  try{
+    if(typeof MODELOS !== "undefined"){
+      resModelos=MODELOS.filter(m=>{
+        const camposMod = (m.nome||"") + " " + (m.descricao||"") + " " + (m.cat||"") + " " + (m.tags?m.tags.join(" "):"");
+        return palavras.every(p=>camposMod.toLowerCase().includes(p));
+      });
+    }
+  }catch(e){}
+
+  document.getElementById("cnt-badge").textContent=(resNormas.length+resTermos.length+resModelos.length)+" resultado(s)";
   // Mostra resultados direto no painel
-  let html=`<div id="det-wrap"><div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--accent);margin-bottom:16px">🔍 Resultados para "${q}"</div>`;
-  if(!resNormas.length&&!resTermos.length){
+  let html=`<div id="det-wrap"><div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--accent);margin-bottom:16px">🔍 Resultados para "${safeQ}"</div>`;
+  if(!resNormas.length && !resTermos.length && !resModelos.length){
     html+=`<div style="text-align:center;padding:40px;color:var(--text-faint)">Nenhum resultado encontrado.</div>`;
   }
   if(resNormas.length){
@@ -927,6 +948,15 @@ function buscarGlobal(q){
     html+=resNormas.map(i=>`<div onclick="selecionarItem('${i.id}','${i.categoria}')" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='var(--border2)'" onmouseout="this.style.borderColor='var(--border)'">
       ${i.sigla?`<div style="font-size:9px;color:var(--green);font-family:'JetBrains Mono',monospace">${i.sigla}</div>`:""}
       <div style="font-size:12px;color:var(--text)">${i.nome}</div>
+    </div>`).join("");
+    html+=`</div>`;
+  }
+  if(resModelos.length){
+    html+=`<div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Modelos Jurídicos (${resModelos.length})</div>`;
+    html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;margin-bottom:20px">`;
+    html+=resModelos.map(m=>`<div onclick="mostrarModelos();setTimeout(()=>toggleModelo('mod_${m.id}'),150)" style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 13px;cursor:pointer;transition:border-color .18s" onmouseover="this.style.borderColor='rgba(42,79,171,.4)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:9px;color:var(--royal-lt);font-family:'JetBrains Mono',monospace;margin-bottom:2px">📄 ${m.cat}</div>
+      <div style="font-size:12px;color:var(--text)">${m.nome}</div>
     </div>`).join("");
     html+=`</div>`;
   }
