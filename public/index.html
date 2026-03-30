@@ -491,7 +491,7 @@ a{color:var(--royal-lt);text-decoration:none;}
   </div>
   <button id="btn-menu-mobile" onclick="abrirNavMobile()">☰</button>
   <div id="srch" style="display:flex;align-items:center;padding-right:5px">
-    <input type="text" id="srch-input" placeholder="🔍 Buscar... ex: dolo, furto, CF/88" oninput="buscarGlobal(this.value)" onkeydown="if(typeof event !== 'undefined' && event && event.key==='Enter') buscarGlobal(this.value)" style="flex:1;background:transparent;border:none;outline:none;color:var(--text);padding-left:10px">
+    <input type="search" id="srch-input" placeholder="🔍 Buscar... ex: dolo, furto, CF..." oninput="buscarGlobal(this.value)" onchange="buscarGlobal(this.value)" onsearch="buscarGlobal(this.value)" onkeydown="if(typeof event !== 'undefined' && event && event.key==='Enter') buscarGlobal(this.value)" style="flex:1;background:transparent;border:none;outline:none;color:var(--text);padding-left:10px">
     <button onclick="buscarGlobal(document.getElementById('srch-input').value)" title="Pesquisar" style="background:transparent;border:none;cursor:pointer;color:var(--text-dim);font-size:16px;padding:4px">🔍</button>
   </div>
   <div id="hdr-right">
